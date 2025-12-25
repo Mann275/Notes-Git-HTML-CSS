@@ -2,8 +2,8 @@
 
 # 📚 Personal Learning Notes
 
-![GitHub](https://img.shields.io/badge/GitHub-181717?style=for-the-badge&logo=github&logoColor=white)
 ![Git](https://img.shields.io/badge/Git-F05032?style=for-the-badge&logo=git&logoColor=white)
+![GitHub](https://img.shields.io/badge/GitHub-181717?style=for-the-badge&logo=github&logoColor=white)
 ![HTML5](https://img.shields.io/badge/HTML5-E34F26?style=for-the-badge&logo=html5&logoColor=white)
 
 A comprehensive collection of my programming and development notes, organized by technology.
@@ -46,7 +46,6 @@ A comprehensive collection of my programming and development notes, organized by
 | 20 | Fetch vs Pull |
 | 21 | .gitignore |
 
-**🎯 Key Concepts Covered:** Version control, branching, merging, collaboration workflow, conflict resolution
 
 </details>
 
@@ -80,67 +79,11 @@ A comprehensive collection of my programming and development notes, organized by
 | 17 | iframe |
 | 18 | Video Tag |
 
-**🎯 Key Concepts Covered:** Page structure, semantic tags, forms, tables, media embedding
 
 </details>
 
 ---
 
-## 📊 Overall Progress
-
-| Technology | Topics Completed | Status | Progress |
-|-----------|-----------------|--------|----------|
-| ![Git](https://img.shields.io/badge/-Git-F05032?style=flat&logo=git&logoColor=white) | 21/21 | ✅ Complete | ![100%](https://progress-bar.dev/100) |
-| ![HTML](https://img.shields.io/badge/-HTML5-E34F26?style=flat&logo=html5&logoColor=white) | 18/18 | ✅ Complete | ![100%](https://progress-bar.dev/100) |
-| **Total** | **39** | **2/2** | ![100%](https://progress-bar.dev/100) |
-
----
-
-## 🎯 Next Topics to Learn (Recommended Roadmap)
-
-### 🔥 Must Learn Next (Foundation):
-
-| Priority | Technology | Why Important | Difficulty |
-|----------|-----------|---------------|------------|
-| 🔴 HIGH | **CSS** | Style your HTML pages, make them beautiful | ⭐⭐ Medium |
-| 🔴 HIGH | **JavaScript** | Add interactivity, core of web development | ⭐⭐⭐ Hard |
-| 🟡 MEDIUM | **Responsive Design** | Mobile-friendly websites | ⭐⭐ Medium |
-| 🟡 MEDIUM | **Bootstrap/Tailwind** | CSS frameworks for faster development | ⭐⭐ Medium |
-
-### 📈 Advanced (After Basics):
-
-| Priority | Technology | Why Important | Difficulty |
-|----------|-----------|---------------|------------|
-| 🟢 NEXT | **React.js** | Modern UI library, high demand | ⭐⭐⭐⭐ Very Hard |
-| 🟢 NEXT | **Node.js** | Backend JavaScript | ⭐⭐⭐ Hard |
-| 🟢 NEXT | **REST API** | Connect frontend to backend | ⭐⭐⭐ Hard |
-| 🔵 LATER | **MongoDB** | Database for storing data | ⭐⭐⭐ Hard |
-| 🔵 LATER | **Express.js** | Backend framework | ⭐⭐⭐ Hard |
-
-### 🎓 Optional (Extra Skills):
-
-| Technology | Purpose | When to Learn |
-|-----------|---------|---------------|
-| **TypeScript** | Type-safe JavaScript | After mastering JavaScript |
-| **Python** | Backend, AI/ML, Automation | Anytime (very useful) |
-| **SQL** | Database queries | When working with databases |
-| **Docker** | Containerization | For deployment |
-| **AWS/Azure** | Cloud platforms | For hosting projects |
-
----
-
-## 💡 Current Status Assessment
-
-### ✅ What You've Mastered:
-- Version control with Git & GitHub
-- HTML structure and all basic tags
-- Repository management
-- Code collaboration basics
-
-### 🎯 What's Next:
-1. **CSS** - Without CSS, your HTML looks plain. This is the most logical next step!
-2. **JavaScript** - After HTML & CSS, JS makes websites interactive
-3. **Build Projects** - Portfolio website, landing page, simple games
 
 ### 🚀 Your Learning Path:
 
