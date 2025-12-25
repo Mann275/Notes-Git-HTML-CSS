@@ -15,7 +15,7 @@ A comprehensive collection of my programming and development notes, organized by
 ## 📑 Complete Index
 
 <details open>
-<summary><h3>🔹 Git & GitHub (21 Topics) ✅</h3></summary>
+<summary><h3>🔹 Git & GitHub ✅</h3></summary>
 
 ![Git](https://img.shields.io/badge/Git-F05032?style=flat-square&logo=git&logoColor=white)
 ![GitHub](https://img.shields.io/badge/GitHub-181717?style=flat-square&logo=github&logoColor=white)
@@ -52,7 +52,7 @@ A comprehensive collection of my programming and development notes, organized by
 ---
 
 <details open>
-<summary><h3>🔹 HTML (18 Topics) ✅</h3></summary>
+<summary><h3>🔹 HTML ✅</h3></summary>
 
 ![HTML5](https://img.shields.io/badge/HTML5-E34F26?style=flat-square&logo=html5&logoColor=white)
 
