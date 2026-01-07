@@ -1,5 +1,4 @@
 /*Java Script Basics*/
-
 // Variables & Declaration
 // var,let,const 
 var d; // Declaration
