@@ -90,7 +90,7 @@ A comprehensive collection of my programming and development notes, organized by
 
 ![CSS3](https://img.shields.io/badge/CSS3-1572B6?style=flat-square&logo=css3&logoColor=white)
 
-**📂 Location:** [CSS/README.md](CSS/README.md) | **📝 Practice:** [examples.html](CSS/examples.html)
+**📂 Location:** [CSS/README.md](CSS/README.md) | **📝 Practice:** [index.html](CSS/index.html)
 
 | # | 📋 Topic |
 |---|---------|

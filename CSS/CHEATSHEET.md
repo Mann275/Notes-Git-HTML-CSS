@@ -311,7 +311,7 @@ color: hsla(0, 100%, 50%, 0.5);
 
 ## 📖 Full Examples
 
-Check [examples.html](examples.html) for interactive examples of all these concepts!
+Check [index.html](index.html) for interactive examples of all these concepts!
 
 ---
 
