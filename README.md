@@ -5,6 +5,7 @@
 ![Git](https://img.shields.io/badge/Git-F05032?style=for-the-badge&logo=git&logoColor=white)
 ![GitHub](https://img.shields.io/badge/GitHub-181717?style=for-the-badge&logo=github&logoColor=white)
 ![HTML5](https://img.shields.io/badge/HTML5-E34F26?style=for-the-badge&logo=html5&logoColor=white)
+![CSS3](https://img.shields.io/badge/CSS3-1572B6?style=for-the-badge&logo=css3&logoColor=white)
 
 A comprehensive collection of my programming and development notes, organized by technology.
 
@@ -84,11 +85,51 @@ A comprehensive collection of my programming and development notes, organized by
 
 ---
 
+<details open>
+<summary><h3>🔹 CSS ✅</h3></summary>
+
+![CSS3](https://img.shields.io/badge/CSS3-1572B6?style=flat-square&logo=css3&logoColor=white)
+
+**📂 Location:** [CSS/README.md](CSS/README.md) | **📝 Practice:** [examples.html](CSS/examples.html)
+
+| # | 📋 Topic |
+|---|---------|
+| 1 | Fonts (font-family, size, weight, style) |
+| 2 | Border (style, width, color, radius) |
+| 3 | Background (color, gradient, image) |
+| 4 | Margin (space outside) |
+| 5 | Padding (space inside) |
+| 6 | Float (left/right positioning) |
+| 7 | Pseudo Classes (:hover, :active, :focus) |
+| 8 | Pseudo Elements (::before, ::after) |
+| 9 | Shadows (box-shadow, text-shadow) |
+| 10 | Icons (Font Awesome) |
+| 11 | Transform (rotate, scale, skew, translate) |
+| 12 | Transition (smooth changes) |
+| 13 | Animation (@keyframes) |
+| 14 | Flexbox (modern 1D layout) |
+| 15 | Grid (modern 2D layout) |
+| 16 | Position (static, relative, absolute, fixed, sticky) |
+| 17 | Z-Index (stacking order) |
+| 18 | Overflow (visible, hidden, scroll) |
+| 19 | Display (block, inline, none) |
+| 20 | Visibility (visible, hidden) |
+| 21 | Opacity (transparency) |
+| 22 | Filters (blur, grayscale, brightness) |
+| 23 | CSS Variables (custom properties) |
+| 24 | Media Queries (responsive design) |
+| 25 | Selectors (class, id, attribute, combinators) |
+
+
+</details>
+
+---
+
 
 ### 🚀 Your Learning Path:
 
 ```
-HTML (✅ Done) → CSS (Next) → JavaScript → React/Node.js
+HTML (✅ Done) → CSS (✅ Done) → JavaScript (Next) → React/Node.js
          ↓
     Git/GitHub (✅ Done) - Use throughout!
 ```
