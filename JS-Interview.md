@@ -19,32 +19,33 @@
 11. [this Keyword](#11-this-keyword)
 12. [Arrow Functions vs Normal Functions](#12-arrow-functions-vs-normal-functions)
 13. [IIFE](#13-iife-immediately-invoked-function-expression)
+14. [Higher Order Functions](#14-higher-order-functions)
 
 ### **Arrays & Objects**
-14. [Arrays](#14-arrays)
-15. [map, filter, reduce](#15-map-filter-reduce)
-16. [Objects](#16-objects)
-17. [Shallow vs Deep Copy](#17-shallow-vs-deep-copy)
+15. [Arrays](#15-arrays)
+16. [map, filter, reduce](#16-map-filter-reduce)
+17. [Objects](#17-objects)
+18. [Shallow vs Deep Copy](#18-shallow-vs-deep-copy)
 
 ### **DOM & Events**
-18. [DOM (Document Object Model)](#18-dom-document-object-model)
-19. [Event Handling](#19-event-handling)
-20. [Event Bubbling](#20-event-bubbling)
-21. [Event Capturing](#21-event-capturing)
-22. [Event Delegation](#22-event-delegation)
+19. [DOM (Document Object Model)](#19-dom-document-object-model)
+20. [Event Handling](#20-event-handling)
+21. [Event Bubbling](#21-event-bubbling)
+22. [Event Capturing](#22-event-capturing)
+23. [Event Delegation](#23-event-delegation)
 
 ### **Asynchronous JavaScript**
-23. [Callbacks](#23-callbacks)
-24. [Promises](#24-promises)
-25. [async / await](#25-async--await)
-26. [Event Loop](#26-event-loop)
-27. [setTimeout / setInterval](#27-settimeout--setinterval)
+24. [Callbacks](#24-callbacks)
+25. [Promises](#25-promises)
+26. [async / await](#26-async--await)
+27. [Event Loop](#27-event-loop)
+28. [setTimeout / setInterval](#28-settimeout--setinterval)
 
 ### **Storage & Modern Features**
-28. [localStorage / sessionStorage](#28-localstorage--sessionstorage)
-29. [ES6 Features](#29-es6-features)
-30. [Error Handling](#30-error-handling)
-31. [JavaScript Quirks](#31-javascript-quirks)
+29. [localStorage / sessionStorage](#29-localstorage--sessionstorage)
+30. [ES6 Features](#30-es6-features)
+31. [Error Handling](#31-error-handling)
+32. [JavaScript Quirks](#32-javascript-quirks)
 
 ### **Resources**
 - [Interview Tips](#interview-tips)
@@ -605,7 +606,126 @@ myModule.publicMethod(); // "I'm private"
 
 ---
 
-## 14. Arrays
+## 14. Higher Order Functions
+
+**Theory:**
+Higher Order Functions are functions that either:
+1. Take one or more functions as arguments (callback functions)
+2. Return a function as their result
+3. Or both
+
+**Common Examples:**
+- `map()`, `filter()`, `reduce()`, `forEach()`
+- `setTimeout()`, `setInterval()`
+- Event listeners
+- Custom functions that accept callbacks
+
+```javascript
+// 1. Function that takes another function as argument
+function greetUser(name, callback) {
+  console.log('Hello ' + name);
+  callback();
+}
+
+function afterGreeting() {
+  console.log('Nice to meet you!');
+}
+
+greetUser('John', afterGreeting);
+// Output: "Hello John" then "Nice to meet you!"
+
+// 2. Function that returns another function
+function createMultiplier(multiplier) {
+  return function(x) {
+    return x * multiplier;
+  };
+}
+
+const double = createMultiplier(2);
+const triple = createMultiplier(3);
+
+console.log(double(5)); // 10
+console.log(triple(5)); // 15
+
+// 3. Array methods are higher order functions
+const numbers = [1, 2, 3, 4, 5];
+
+// map() takes a function as argument
+const doubled = numbers.map(function(num) {
+  return num * 2;
+});
+console.log(doubled); // [2, 4, 6, 8, 10]
+
+// filter() takes a function as argument
+const evenNumbers = numbers.filter(function(num) {
+  return num % 2 === 0;
+});
+console.log(evenNumbers); // [2, 4]
+
+// reduce() takes a function as argument
+const sum = numbers.reduce(function(acc, num) {
+  return acc + num;
+}, 0);
+console.log(sum); // 15
+
+// 4. Using arrow functions (more concise)
+const squared = numbers.map(num => num * num);
+console.log(squared); // [1, 4, 9, 16, 25]
+
+// 5. Custom higher order function example
+function withLogging(fn) {
+  return function(...args) {
+    console.log('Calling function with args:', args);
+    const result = fn.apply(this, args);
+    console.log('Function returned:', result);
+    return result;
+  };
+}
+
+function add(a, b) {
+  return a + b;
+}
+
+const addWithLogging = withLogging(add);
+addWithLogging(2, 3);
+// Output: 
+// "Calling function with args: [2, 3]"
+// "Function returned: 5"
+
+// 6. Practical example - Array utility functions
+function processArray(arr, transformer, filter) {
+  return arr
+    .filter(filter)
+    .map(transformer);
+}
+
+const data = [1, 2, 3, 4, 5, 6];
+const result = processArray(
+  data,
+  x => x * x,           // transformer function
+  x => x % 2 === 0      // filter function
+);
+console.log(result); // [4, 16, 36] (squares of even numbers)
+```
+
+**Interview Questions:**
+1. What is a higher order function?
+2. Give examples of built-in higher order functions
+3. Write a custom higher order function
+4. Explain the difference between `map()` and `forEach()`
+5. How would you implement your own `map()` function?
+
+**Benefits:**
+- **Code Reusability:** Write generic functions that can work with different behaviors
+- **Abstraction:** Hide complex logic behind simple function calls
+- **Functional Programming:** Enables functional programming patterns
+- **Composition:** Combine simple functions to create complex behaviors
+
+[⬆️ Back to Top](#top)
+
+---
+
+## 15. Arrays
 
 **Theory:**
 Arrays are ordered collections of values.
@@ -654,7 +774,7 @@ const arr5 = [...arr4, 4, 5]; // [1, 2, 3, 4, 5]
 
 ---
 
-## 15. map, filter, reduce
+## 16. map, filter, reduce
 
 **Theory:**
 Higher-order array methods for transforming and processing data.
@@ -707,7 +827,7 @@ console.log(count); // { apple: 2, banana: 2, orange: 1 }
 
 ---
 
-## 16. Objects
+## 17. Objects
 
 **Theory:**
 Objects are collections of key-value pairs.
@@ -772,7 +892,7 @@ console.log(name, age);
 
 ---
 
-## 17. Shallow vs Deep Copy
+## 18. Shallow vs Deep Copy
 
 **Theory:**
 - Shallow copy: Copies only the first level, nested objects are still referenced
@@ -855,7 +975,7 @@ const deepCopy3 = structuredClone(original3);
 
 ---
 
-## 18. DOM (Document Object Model)
+## 19. DOM (Document Object Model)
 
 **Theory:**
 DOM is a programming interface for HTML documents. It represents the page as a tree structure.
@@ -912,7 +1032,7 @@ const prevSibling = el1.previousElementSibling;
 
 ---
 
-## 19. Event Handling
+## 20. Event Handling
 
 **Theory:**
 Events are actions that happen in the browser (clicks, key presses, etc.).
@@ -986,7 +1106,7 @@ form.addEventListener("submit", (e) => {
 
 ---
 
-## 20. Event Bubbling
+## 21. Event Bubbling
 
 **Theory:**
 Event bubbling is when an event starts from the target element and bubbles up to the root.
@@ -1034,7 +1154,7 @@ btn.addEventListener("click", (e) => {
 
 ---
 
-## 21. Event Capturing
+## 22. Event Capturing
 
 **Theory:**
 Event capturing is the opposite of bubbling - event goes from root to target element.
@@ -1083,7 +1203,7 @@ btn.addEventListener("click", () => {
 
 ---
 
-## 22. Event Delegation
+## 23. Event Delegation
 
 **Theory:**
 Event delegation uses bubbling to handle events at a higher level instead of adding listeners to each child element.
@@ -1149,7 +1269,7 @@ todoList.addEventListener("click", (e) => {
 
 ---
 
-## 23. Callbacks
+## 24. Callbacks
 
 **Theory:**
 A callback is a function passed as an argument to another function, to be executed later.
@@ -1222,7 +1342,7 @@ const doubled = numbers.map((num) => num * 2);
 
 ---
 
-## 24. Promises
+## 25. Promises
 
 **Theory:**
 Promises represent eventual completion (or failure) of an asynchronous operation.
@@ -1321,7 +1441,7 @@ Promise.any([p1, p2, p3]).then((value) => {
 
 ---
 
-## 25. async / await
+## 26. async / await
 
 **Theory:**
 async/await is syntactic sugar over Promises, making asynchronous code look synchronous.
@@ -1413,7 +1533,7 @@ async function getUserPosts() {
 
 ---
 
-## 26. Event Loop
+## 27. Event Loop
 
 **Theory:**
 The event loop is how JavaScript handles asynchronous operations in a single-threaded environment.
@@ -1491,7 +1611,7 @@ console.log("5");
 
 ---
 
-## 27. setTimeout / setInterval
+## 28. setTimeout / setInterval
 
 **Theory:**
 - `setTimeout`: Executes code once after a delay
@@ -1600,7 +1720,7 @@ const throttledScroll = throttle(() => {
 
 ---
 
-## 28. localStorage / sessionStorage
+## 29. localStorage / sessionStorage
 
 **Theory:**
 Web Storage API for storing data in the browser.
@@ -1708,7 +1828,7 @@ function toggleDarkMode() {
 
 ---
 
-## 29. ES6 Features
+## 30. ES6 Features
 
 **Theory:**
 ES6 (ES2015) introduced many new features to JavaScript.
@@ -1846,7 +1966,7 @@ Object.entries(obj);
 
 ---
 
-## 30. Error Handling
+## 31. Error Handling
 
 **Theory:**
 Error handling allows you to catch and handle errors gracefully.
@@ -1981,7 +2101,7 @@ try {
 
 ---
 
-## 31. JavaScript Quirks
+## 32. JavaScript Quirks
 
 **Theory:**
 JavaScript has some unusual behaviors that can be surprising.
