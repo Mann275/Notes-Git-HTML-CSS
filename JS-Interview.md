@@ -2134,7 +2134,6 @@ console.log(arr2.length);  // 3 (length unchanged!)
 15. How do you handle errors in JavaScript?
 
 ---
-
 [⬆️ Back to Top](#top)
 
 **Good luck with your interviews! 🚀**
