@@ -1,9 +1,11 @@
 # JavaScript Interview Guide
 
 <a name="top"></a>
+
 ## 📑 Table of Contents
 
 ### **Fundamentals**
+
 1. [var vs let vs const](#1-var-vs-let-vs-const)
 2. [Data Types](#2-data-types)
 3. [Type Coercion](#3-type-coercion)
@@ -15,6 +17,7 @@
 9. [Call Stack](#9-call-stack)
 
 ### **Functions & Closures**
+
 10. [Closures](#10-closures)
 11. [this Keyword](#11-this-keyword)
 12. [Arrow Functions vs Normal Functions](#12-arrow-functions-vs-normal-functions)
@@ -22,12 +25,14 @@
 14. [Higher Order Functions](#14-higher-order-functions)
 
 ### **Arrays & Objects**
+
 15. [Arrays](#15-arrays)
 16. [map, filter, reduce](#16-map-filter-reduce)
 17. [Objects](#17-objects)
 18. [Shallow vs Deep Copy](#18-shallow-vs-deep-copy)
 
 ### **DOM & Events**
+
 19. [DOM (Document Object Model)](#19-dom-document-object-model)
 20. [Event Handling](#20-event-handling)
 21. [Event Bubbling](#21-event-bubbling)
@@ -35,6 +40,7 @@
 23. [Event Delegation](#23-event-delegation)
 
 ### **Asynchronous JavaScript**
+
 24. [Callbacks](#24-callbacks)
 25. [Promises](#25-promises)
 26. [async / await](#26-async--await)
@@ -42,12 +48,14 @@
 28. [setTimeout / setInterval](#28-settimeout--setinterval)
 
 ### **Storage & Modern Features**
+
 29. [localStorage / sessionStorage](#29-localstorage--sessionstorage)
 30. [ES6 Features](#30-es6-features)
 31. [Error Handling](#31-error-handling)
 32. [JavaScript Quirks](#32-javascript-quirks)
 
 ### **Advanced Concepts**
+
 33. [Call, Apply & Bind](#33-call-apply--bind)
 34. [Prototype & Inheritance](#34-prototype--inheritance)
 35. [null vs undefined](#35-null-vs-undefined)
@@ -57,28 +65,33 @@
 39. [Event Loop Phases](#39-event-loop-phases)
 
 ### **Design Patterns & Architecture**
+
 40. [Module Pattern (IIFE)](#40-module-pattern-iife)
 41. [Revealing Module Pattern](#41-revealing-module-pattern)
 42. [Factory Function Pattern](#42-factory-function-pattern)
 43. [Observer Pattern (Pub-Sub)](#43-observer-pattern-pub-sub)
 
 ### **Performance Optimization**
+
 44. [Advanced Debouncing & Throttling](#44-advanced-debouncing--throttling)
 45. [Lazy Loading with IntersectionObserver](#45-lazy-loading-with-intersectionobserver)
 46. [DOM Optimization Techniques](#46-dom-optimization-techniques)
 47. [Memory Leak Prevention](#47-memory-leak-prevention)
 
 ### **Functional Programming & Architecture**
+
 48. [Pure vs Impure Functions](#48-pure-vs-impure-functions)
 49. [Function Composition & Pipelines](#49-function-composition--pipelines)
 50. [Separation of Concerns (MVC Pattern)](#50-separation-of-concerns-mvc-pattern)
 51. [Custom Utility Implementations](#51-custom-utility-implementations)
 
 ### **Browser Architecture**
+
 52. [JavaScript Engine & Event Loop Deep Dive](#52-javascript-engine--event-loop-deep-dive)
 53. [Web APIs & Browser Threading](#53-web-apis--browser-threading)
 
 ### **Resources**
+
 - [Interview Tips](#interview-tips)
 - [Common Interview Questions](#common-interview-questions)
 
@@ -91,6 +104,7 @@
 **Exp:** Yeh teen tarike hain variables banane ke liye. var purana hai, let aur const naye hain. var function mein kaam karta hai, let aur const block mein. const ko change nahi kar sakte.
 
 **Theory:**
+
 - `var`: Function-scoped, can be re-declared and updated, gets hoisted
 - `let`: Block-scoped, cannot be re-declared but can be updated, hoisted but in TDZ
 - `const`: Block-scoped, cannot be re-declared or updated, hoisted but in TDZ
@@ -131,49 +145,34 @@ obj.name = "Jane"; // This works
 
 ## 2. Data Types
 
-**Definition:** Data types specify what kind of data can be stored and manipulated within a program. JavaScript has primitive types (basic values) and reference types (objects).
+**Definition:** Data types tell us what kind of information we can store.
 
-**Exp:** Data types matlab kya type ka data store kar sakte hain. JavaScript mein do main types hain - primitive (simple values like number, string) aur reference (complex objects).
+**Exp:** Data types matlab hum kya kya cheezein store kar sakte hain. Jaise number, text, true/false, etc.
 
 **Theory:**
-JavaScript has 7 primitive types and 1 reference type:
+JavaScript mein mainly 7 types hain:
 
-**Primitives:**
-1. String
-2. Number
-3. Boolean
-4. Undefined
-5. Null
-6. Symbol
-7. BigInt
-
-**Reference:** Object (includes Array, Function, Date, etc.)
+1. **String** - Text
+2. **Number** - Numbers
+3. **Boolean** - True/False
+4. **Undefined** - Kuch set nahi kiya
+5. **Null** - Khali
+6. **Object** - Complex data
+7. **Symbol** - Unique identifier
 
 ```javascript
-// Primitives
-let str = "Hello";
-let num = 42;
-let bool = true;
-let undef = undefined;
-let n = null;
-let sym = Symbol("id");
-let bigInt = 9007199254740991n;
+// Simple examples
+let myName = "Rahul"; // String
+let myAge = 25; // Number
+let isStudent = true; // Boolean
+let address; // Undefined
+let salary = null; // Null
+let person = { name: "John" }; // Object
 
-// Reference types
-let obj = { name: "John" };
-let arr = [1, 2, 3];
-let func = function() {};
-
-// Check types
-console.log(typeof str);    // "string"
-console.log(typeof num);    // "number"
-console.log(typeof bool);   // "boolean"
-console.log(typeof undef);  // "undefined"
-console.log(typeof n);      // "object" (bug in JS)
-console.log(typeof sym);    // "symbol"
-console.log(typeof obj);    // "object"
-console.log(typeof arr);    // "object"
-console.log(typeof func);   // "function"
+// Check type
+console.log(typeof myName); // "string"
+console.log(typeof myAge); // "number"
+console.log(typeof isStudent); // "boolean"
 ```
 
 [⬆️ Back to Top](#top)
@@ -182,33 +181,26 @@ console.log(typeof func);   // "function"
 
 ## 3. Type Coercion
 
-**Definition:** Type coercion is the automatic or implicit conversion of values from one data type to another during operations or comparisons.
+**Definition:** JavaScript automatically changes one data type to another.
 
-**Exp:** Type coercion matlab JavaScript automatically ek data type ko doosre mein convert kar deta hai. Jaise "5" + 3 = "53" ho jata hai kyuki number string ban jata hai.
+**Exp:** Type coercion matlab JavaScript khud hi data type change kar deta hai. Magic ki tarah!
 
 **Theory:**
-Type coercion is automatic conversion of values from one type to another.
+JavaScript apne aap types convert kar deta hai operations mein.
 
 ```javascript
-// Implicit coercion
-console.log("5" + 3);      // "53" (number to string)
-console.log("5" - 3);      // 2 (string to number)
-console.log("5" * "2");    // 10 (both to numbers)
-console.log(true + 1);     // 2 (true becomes 1)
-console.log(false + 1);    // 1 (false becomes 0)
+// Addition with string = string banta hai
+console.log("5" + 2); // "52" (string)
+console.log("Hello" + 5); // "Hello5"
 
-// Explicit coercion
-let num = Number("123");   // 123
-let str = String(123);     // "123"
-let bool = Boolean(1);     // true
+// Other operations = number banta hai
+console.log("5" - 2); // 3 (number)
+console.log("10" * 2); // 20 (number)
+console.log("8" / 2); // 4 (number)
 
-// Falsy values (coerce to false)
-console.log(Boolean(0));           // false
-console.log(Boolean(""));          // false
-console.log(Boolean(null));        // false
-console.log(Boolean(undefined));   // false
-console.log(Boolean(NaN));         // false
-console.log(Boolean(false));       // false
+// Boolean se number
+console.log(true + 1); // 2 (true = 1)
+console.log(false + 5); // 5 (false = 0)
 ```
 
 [⬆️ Back to Top](#top)
@@ -217,28 +209,28 @@ console.log(Boolean(false));       // false
 
 ## 4. == vs ===
 
-**Definition:** These are comparison operators in JavaScript. Double equals (==) performs loose equality comparison with type coercion, while triple equals (===) performs strict equality comparison without type coercion.
+**Definition:** Two ways to compare values in JavaScript.
 
-**Exp:** == wala comparison mein type convert hota hai, === mein bilkul same hona chahiye. Hamesha === use karo kyuki yeh zyada safe hai.
+**== Exp:** Loose comparison - type convert karke check karta hai. Jaise "5" == 5 true hoga.
+**=== Exp:** Strict comparison - bilkul same hona chahiye. Type bhi same, value bhi same.
 
 **Theory:**
-- `==` (loose equality): Compares values after type coercion
-- `===` (strict equality): Compares values AND types without coercion
+
+- `==` Type convert karta hai phir compare karta hai
+- `===` Direct compare karta hai, no conversion
 
 ```javascript
-// == (loose equality)
-console.log(5 == "5");      // true (coerces string to number)
-console.log(null == undefined); // true
-console.log(0 == false);    // true
-console.log("" == false);   // true
+// == examples (loose)
+console.log(5 == "5"); // true (string "5" becomes number 5)
+console.log(true == 1); // true (true becomes 1)
+console.log(false == 0); // true (false becomes 0)
 
-// === (strict equality)
-console.log(5 === "5");     // false (different types)
-console.log(null === undefined); // false
-console.log(0 === false);   // false
-console.log("" === false);  // false
+// === examples (strict)
+console.log(5 === "5"); // false (number vs string)
+console.log(true === 1); // false (boolean vs number)
+console.log(5 === 5); // true (same type, same value)
 
-// Always prefer === in interviews and production
+// Always use === - it's safer!
 ```
 
 [⬆️ Back to Top](#top)
@@ -247,9 +239,11 @@ console.log("" === false);  // false
 
 ## 5. Scope (global, function, block)
 
-**Definition:** Scope determines the accessibility and visibility of variables, functions, and objects in different parts of the code during runtime.
+**Definition:** Scope means where variables can be used in your code.
 
-**Exp:** Scope matlab variables kahan kahan accessible hain. Global scope mein sab jagah mil jata hai, function scope mein sirf function ke andar, block scope mein sirf {} ke andar.
+**Global Exp:** Sab jagah use kar sakte hain. Jaise ghar ka main gate - sabko pata hai.
+**Function Exp:** Sirf function ke andar use kar sakte hain. Jaise bedroom - sirf family wale jaa sakte hain.
+**Block Exp:** Sirf {} brackets ke andar use kar sakte hain. Jaise locker - sirf key wala khol sakta hai.
 
 **Theory:**
 Scope determines the accessibility of variables.
@@ -262,16 +256,16 @@ let globalLet = "Also global";
 function testScope() {
   // Function scope
   var functionVar = "Function scoped";
-  
+
   if (true) {
     // Block scope
     let blockLet = "Block scoped";
     const blockConst = "Also block scoped";
     var functionVar2 = "Function scoped (var)";
-    
+
     console.log(blockLet); // Works
   }
-  
+
   // console.log(blockLet); // Error! blockLet is not defined
   console.log(functionVar2); // Works (var is function-scoped)
 }
@@ -286,39 +280,32 @@ console.log(globalVar); // Works
 
 ## 6. Hoisting
 
-**Definition:** Hoisting is JavaScript's default behavior of moving all variable and function declarations to the top of their respective scopes during the compilation phase, before code execution.
+**Definition:** JavaScript moves variable declarations to the top before running code.
 
-**Exp:** Hoisting matlab JavaScript variables aur functions ko upar le jaata hai. Isliye aap variable ko declare karne se pehle use kar sakte ho (but undefined milega).
+**Exp:** Hoisting matlab JavaScript variables ko upar le jaata hai. Jaise aap kisi ko pehle hi bata dete ho ki "main aaunga", phir baad mein actually aate ho.
 
 **Theory:**
-Hoisting is JavaScript's behavior of moving declarations to the top of their scope before code execution.
+JavaScript declarations ko top pe move kar deta hai, but values nahi.
 
 ```javascript
-// var hoisting
-console.log(x); // undefined (not an error)
-var x = 5;
-console.log(x); // 5
+// What you write:
+console.log(myName); // undefined (not error!)
+var myName = "Rahul";
 
-// Above code is interpreted as:
-// var x;
-// console.log(x);
-// x = 5;
+// What JavaScript sees:
+var myName; // moved to top
+console.log(myName); // undefined
+myName = "Rahul";
 
-// let/const hoisting (but in TDZ)
-// console.log(y); // ReferenceError
-let y = 10;
+// let/const mein hoisting hai but error deta hai
+// console.log(age); // Error!
+let age = 25;
 
-// Function hoisting
-sayHello(); // Works! "Hello"
-function sayHello() {
-  console.log("Hello");
+// Functions fully hoisted
+sayHi(); // Works!
+function sayHi() {
+  console.log("Hi!");
 }
-
-// Function expression not hoisted
-// greet(); // TypeError: greet is not a function
-var greet = function() {
-  console.log("Hi");
-};
 ```
 
 [⬆️ Back to Top](#top)
@@ -327,9 +314,9 @@ var greet = function() {
 
 ## 7. Temporal Dead Zone (TDZ)
 
-**Definition:** The Temporal Dead Zone is the period of time during which let and const variables exist but cannot be accessed, from the beginning of the scope until the declaration is encountered.
+**Definition:** The time when let/const variables exist but cannot be used.
 
-**Exp:** TDZ matlab let aur const variables ka ek time period jahan wo exist karte hain but access nahi kar sakte. Iske wajah se ReferenceError aata hai.
+**Exp:** TDZ matlab let aur const variables ka waiting time. Jaise train platform pe hai but abhi board nahi kar sakte - wait karna padega.
 
 **Theory:**
 TDZ is the time between entering scope and variable declaration where you cannot access the variable.
@@ -341,9 +328,9 @@ let a = 10;
 // TDZ example
 function example() {
   // TDZ starts here for 'temp'
-  
+
   console.log(temp); // ReferenceError
-  
+
   let temp = 5; // TDZ ends here
   console.log(temp); // 5
 }
@@ -359,17 +346,19 @@ var b = 20;
 
 ## 8. Execution Context
 
-**Definition:** Execution Context is an environment in which JavaScript code is executed. It contains the code being executed along with information needed for its execution like variables, functions, and scope.
+**Definition:** The environment where JavaScript code runs.
 
-**Exp:** Execution context matlab ek container hai jaha JavaScript code run hota hai. Isme variables, functions aur scope ki information hoti hai. Jaise ek room hai jaha sab cheezein organized hain.
+**Exp:** Execution context matlab ek room hai jaha code execute hota hai. Har function ka apna room hota hai with uske variables aur information.
 
 **Theory:**
 Execution context is the environment where JavaScript code is executed. It contains:
+
 - Variable Environment
 - Lexical Environment
 - This binding
 
 **Types:**
+
 1. Global Execution Context
 2. Function Execution Context
 3. Eval Execution Context
@@ -381,15 +370,15 @@ var globalVar = "Global";
 function outer() {
   // Function Execution Context created when function is called
   var outerVar = "Outer";
-  
+
   function inner() {
     // New Function Execution Context
     var innerVar = "Inner";
     console.log(globalVar); // Access from global
-    console.log(outerVar);  // Access from parent
-    console.log(innerVar);  // Access from own context
+    console.log(outerVar); // Access from parent
+    console.log(innerVar); // Access from own context
   }
-  
+
   inner();
 }
 
@@ -402,9 +391,9 @@ outer();
 
 ## 9. Call Stack
 
-**Definition:** The Call Stack is a data structure that keeps track of function calls in a program. It follows the Last In, First Out (LIFO) principle to manage function execution order.
+**Definition:** A list that tracks which functions are running.
 
-**Exp:** Call stack ek list hai jo track karta hai ki kaunsa function chal raha hai. Jaise books ka stack - jo last mein aaya wo pehle nikega (LIFO).
+**Exp:** Call stack ek list hai jo yaad rakhti hai ki kaunsa function chal raha hai. Jaise books ka pile - jo last mein aaya wo pehle nikle ga (LIFO).
 
 **Theory:**
 Call stack is a mechanism to keep track of function calls. It follows LIFO (Last In First Out).
@@ -450,9 +439,9 @@ first();
 
 ## 10. Closures
 
-**Definition:** A closure is a function that has access to variables from its outer (parent) scope even after the parent function has finished executing and returned.
+**Definition:** A function that remembers variables from its parent function.
 
-**Exp:** Closure matlab ek function jo apne parent function ke variables ko yaad rakhta hai, even jab parent function khatam ho gaya ho. Jaise ek bachha jo ghar chod kar bhi ghar ki yaadein rakhta hai.
+**Exp:** Closure matlab ek function jo apne papa function ki yaadein rakhta hai. Jaise bachha ghar chod kar bhi mummy papa ko yaad rakhta hai.
 
 **Theory:**
 A closure is a function that has access to variables in its outer (parent) function scope, even after the parent function has returned.
@@ -461,12 +450,12 @@ A closure is a function that has access to variables in its outer (parent) funct
 // Basic closure
 function outer() {
   let counter = 0;
-  
+
   function inner() {
     counter++;
     console.log(counter);
   }
-  
+
   return inner;
 }
 
@@ -478,19 +467,19 @@ increment(); // 3
 // Practical example: Private variables
 function createCounter() {
   let count = 0;
-  
+
   return {
-    increment: function() {
+    increment: function () {
       count++;
       return count;
     },
-    decrement: function() {
+    decrement: function () {
       count--;
       return count;
     },
-    getCount: function() {
+    getCount: function () {
       return count;
-    }
+    },
   };
 }
 
@@ -498,7 +487,7 @@ const counter = createCounter();
 console.log(counter.increment()); // 1
 console.log(counter.increment()); // 2
 console.log(counter.decrement()); // 1
-console.log(counter.getCount());  // 1
+console.log(counter.getCount()); // 1
 // console.log(counter.count); // undefined (private)
 ```
 
@@ -508,9 +497,9 @@ console.log(counter.getCount());  // 1
 
 ## 11. this Keyword
 
-**Definition:** The 'this' keyword refers to the object that is currently executing or calling the function. Its value depends on how the function is called, not where it is defined.
+**Definition:** 'this' points to the object that is calling the function.
 
-**Exp:** 'this' matlab 'yeh' - jo object function ko call kar raha hai usko point karta hai. Context ke hisaab se change hota rehta hai, jaise aap different jagah 'main' bolte ho to different meaning hota hai.
+**Exp:** 'this' matlab "main" - jo object function ko call kar raha hai usko point karta hai. Jaise aap different jagah "main" bolte ho to different meaning hota hai.
 
 **Theory:**
 `this` refers to the object that is executing the current function.
@@ -522,9 +511,9 @@ console.log(this); // Window object (in browser)
 // Object method
 const person = {
   name: "John",
-  greet: function() {
+  greet: function () {
     console.log("Hello, " + this.name);
-  }
+  },
 };
 person.greet(); // "Hello, John"
 
@@ -550,7 +539,7 @@ function greet() {
   console.log("Hello, " + this.name);
 }
 const user = { name: "Alice" };
-greet.call(user);  // "Hello, Alice"
+greet.call(user); // "Hello, Alice"
 greet.apply(user); // "Hello, Alice"
 const boundGreet = greet.bind(user);
 boundGreet(); // "Hello, Alice"
@@ -562,12 +551,14 @@ boundGreet(); // "Hello, Alice"
 
 ## 12. Arrow Functions vs Normal Functions
 
-**Definition:** Arrow functions are a concise way to write functions introduced in ES6, using => syntax. They differ from normal functions in terms of 'this' binding, arguments object, and constructor usage.
+**Definition:** Short way to write functions using => arrow syntax.
 
-**Exp:** Arrow functions (=>) short way hai function likhne ka. Normal functions se different hai kyuki 'this' parent se inherit karta hai aur 'new' keyword se call nahi kar sakte.
+**Normal Function Exp:** Purane style ka function. 'this' apna hota hai.
+**Arrow Function Exp:** Naye style ka function. 'this' parent se aata hai. Short aur sweet.
 
 **Theory:**
 Key differences:
+
 1. `this` binding
 2. `arguments` object
 3. Cannot be used as constructors
@@ -589,16 +580,16 @@ const arrowFunc = () => {
 // this binding difference
 const obj = {
   name: "Test",
-  normalMethod: function() {
+  normalMethod: function () {
     console.log(this.name); // "Test"
   },
   arrowMethod: () => {
     console.log(this.name); // undefined (this is from global)
-  }
+  },
 };
 
 obj.normalMethod(); // "Test"
-obj.arrowMethod();  // undefined
+obj.arrowMethod(); // undefined
 
 // Constructor
 function Person(name) {
@@ -625,21 +616,21 @@ numbers.forEach(() => {
 
 ## 13. IIFE (Immediately Invoked Function Expression)
 
-**Definition:** IIFE is a function that is executed immediately after it is defined. It's a design pattern used to create private scope and avoid polluting the global namespace.
+**Definition:** A function that runs immediately after being created.
 
-**Exp:** IIFE matlab function banana aur turant chala dena. Isse private variables bana sakte hain jo bahar se access nahi ho sakte. Jaise ek secret room banaya aur immediately use kar liya.
+**Exp:** IIFE matlab function banana aur turant chala dena. Jaise khana banate hi turant kha lena - no waiting!
 
 **Theory:**
 IIFE is a function that runs as soon as it is defined. Used to create private scope.
 
 ```javascript
 // Basic IIFE
-(function() {
+(function () {
   console.log("IIFE executed!");
 })();
 
 // IIFE with parameters
-(function(name) {
+(function (name) {
   console.log("Hello, " + name);
 })("John");
 
@@ -649,16 +640,16 @@ IIFE is a function that runs as soon as it is defined. Used to create private sc
 })();
 
 // Practical use: Private variables
-const counter = (function() {
+const counter = (function () {
   let count = 0;
-  
+
   return {
-    increment: function() {
+    increment: function () {
       return ++count;
     },
-    decrement: function() {
+    decrement: function () {
       return --count;
-    }
+    },
   };
 })();
 
@@ -667,17 +658,17 @@ console.log(counter.increment()); // 2
 // count is private and cannot be accessed directly
 
 // Module pattern
-const myModule = (function() {
+const myModule = (function () {
   const privateVar = "I'm private";
-  
+
   function privateMethod() {
     console.log(privateVar);
   }
-  
+
   return {
-    publicMethod: function() {
+    publicMethod: function () {
       privateMethod();
-    }
+    },
   };
 })();
 
@@ -691,17 +682,19 @@ myModule.publicMethod(); // "I'm private"
 
 ## 14. Higher Order Functions
 
-**Definition:** Higher Order Functions are functions that either take one or more functions as arguments, return a function as their result, or both. They enable functional programming paradigms.
+**Definition:** Functions that work with other functions.
 
-**Exp:** Higher order functions matlab functions jo doosre functions ke saath kaam karte hain. Ya to functions ko input mein lete hain ya function return karte hain. Jaise map(), filter() - yeh sab higher order functions hain.
+**Exp:** Higher order functions matlab functions jo doosre functions ke saath kaam karte hain. Jaise map(), filter() - yeh functions ko input mein lete hain aur magic karte hain!
 
 **Theory:**
 Higher Order Functions are functions that either:
+
 1. Take one or more functions as arguments (callback functions)
 2. Return a function as their result
 3. Or both
 
 **Common Examples:**
+
 - `map()`, `filter()`, `reduce()`, `forEach()`
 - `setTimeout()`, `setInterval()`
 - Event listeners
@@ -710,20 +703,20 @@ Higher Order Functions are functions that either:
 ```javascript
 // 1. Function that takes another function as argument
 function greetUser(name, callback) {
-  console.log('Hello ' + name);
+  console.log("Hello " + name);
   callback();
 }
 
 function afterGreeting() {
-  console.log('Nice to meet you!');
+  console.log("Nice to meet you!");
 }
 
-greetUser('John', afterGreeting);
+greetUser("John", afterGreeting);
 // Output: "Hello John" then "Nice to meet you!"
 
 // 2. Function that returns another function
 function createMultiplier(multiplier) {
-  return function(x) {
+  return function (x) {
     return x * multiplier;
   };
 }
@@ -738,33 +731,33 @@ console.log(triple(5)); // 15
 const numbers = [1, 2, 3, 4, 5];
 
 // map() takes a function as argument
-const doubled = numbers.map(function(num) {
+const doubled = numbers.map(function (num) {
   return num * 2;
 });
 console.log(doubled); // [2, 4, 6, 8, 10]
 
 // filter() takes a function as argument
-const evenNumbers = numbers.filter(function(num) {
+const evenNumbers = numbers.filter(function (num) {
   return num % 2 === 0;
 });
 console.log(evenNumbers); // [2, 4]
 
 // reduce() takes a function as argument
-const sum = numbers.reduce(function(acc, num) {
+const sum = numbers.reduce(function (acc, num) {
   return acc + num;
 }, 0);
 console.log(sum); // 15
 
 // 4. Using arrow functions (more concise)
-const squared = numbers.map(num => num * num);
+const squared = numbers.map((num) => num * num);
 console.log(squared); // [1, 4, 9, 16, 25]
 
 // 5. Custom higher order function example
 function withLogging(fn) {
-  return function(...args) {
-    console.log('Calling function with args:', args);
+  return function (...args) {
+    console.log("Calling function with args:", args);
     const result = fn.apply(this, args);
-    console.log('Function returned:', result);
+    console.log("Function returned:", result);
     return result;
   };
 }
@@ -775,27 +768,26 @@ function add(a, b) {
 
 const addWithLogging = withLogging(add);
 addWithLogging(2, 3);
-// Output: 
+// Output:
 // "Calling function with args: [2, 3]"
 // "Function returned: 5"
 
 // 6. Practical example - Array utility functions
 function processArray(arr, transformer, filter) {
-  return arr
-    .filter(filter)
-    .map(transformer);
+  return arr.filter(filter).map(transformer);
 }
 
 const data = [1, 2, 3, 4, 5, 6];
 const result = processArray(
   data,
-  x => x * x,           // transformer function
-  x => x % 2 === 0      // filter function
+  (x) => x * x, // transformer function
+  (x) => x % 2 === 0, // filter function
 );
 console.log(result); // [4, 16, 36] (squares of even numbers)
 ```
 
 **Interview Questions:**
+
 1. What is a higher order function?
 2. Give examples of built-in higher order functions
 3. Write a custom higher order function
@@ -803,6 +795,7 @@ console.log(result); // [4, 16, 36] (squares of even numbers)
 5. How would you implement your own `map()` function?
 
 **Benefits:**
+
 - **Code Reusability:** Write generic functions that can work with different behaviors
 - **Abstraction:** Hide complex logic behind simple function calls
 - **Functional Programming:** Enables functional programming patterns
@@ -814,51 +807,37 @@ console.log(result); // [4, 16, 36] (squares of even numbers)
 
 ## 15. Arrays
 
-**Definition:** Arrays are ordered collections of elements (values) that can store multiple items in a single variable. Each element has an index starting from 0.
+**Definition:** Arrays store multiple values in one variable with index numbers.
 
-**Exp:** Arrays matlab ek list hai jisme multiple values store kar sakte hain. Jaise ek shopping list - har item ka number (index) hota hai 0 se start hoke.
+**Exp:** Arrays matlab ek dabba hai jisme multiple cheezein rakh sakte hain. Har cheez ka number (index) hota hai 0 se start.
 
 **Theory:**
-Arrays are ordered collections of values.
+Array is like a numbered list starting from 0.
 
 ```javascript
-// Creating arrays
-const arr1 = [1, 2, 3, 4, 5];
-const arr2 = new Array(1, 2, 3);
-const arr3 = Array.of(1, 2, 3);
-
-// Common methods
+// Create array
 const fruits = ["apple", "banana", "orange"];
 
+// Access by index
+console.log(fruits[0]); // "apple"
+console.log(fruits[1]); // "banana"
+
 // Add/Remove
-fruits.push("grape");        // Add to end
-fruits.pop();                // Remove from end
-fruits.unshift("mango");     // Add to start
-fruits.shift();              // Remove from start
+fruits.push("mango"); // Add at end
+fruits.pop(); // Remove from end
+fruits.unshift("grapes"); // Add at start
+fruits.shift(); // Remove from start
 
-// Slice & Splice
-const sliced = fruits.slice(1, 3);  // Returns ["banana", "orange"]
-fruits.splice(1, 1, "kiwi");        // Remove 1 at index 1, add "kiwi"
+// Length
+console.log(fruits.length); // How many items
 
-// Find
-const index = fruits.indexOf("banana");
-const found = fruits.find(f => f === "apple");
-const foundIndex = fruits.findIndex(f => f === "apple");
+// Loop through array
+for (let i = 0; i < fruits.length; i++) {
+  console.log(fruits[i]);
+}
 
-// Iteration
-fruits.forEach(fruit => console.log(fruit));
-
-// Check
-console.log(fruits.includes("apple"));  // true
-console.log(Array.isArray(fruits));     // true
-
-// Join & Split
-const str = fruits.join(", ");  // "apple, banana, orange"
-const arr = "a-b-c".split("-"); // ["a", "b", "c"]
-
-// Spread operator
-const arr4 = [1, 2, 3];
-const arr5 = [...arr4, 4, 5]; // [1, 2, 3, 4, 5]
+// Check if exists
+console.log(fruits.includes("apple")); // true or false
 ```
 
 [⬆️ Back to Top](#top)
@@ -867,9 +846,11 @@ const arr5 = [...arr4, 4, 5]; // [1, 2, 3, 4, 5]
 
 ## 16. map, filter, reduce
 
-**Definition:** These are higher-order array methods used for data transformation. map() transforms each element, filter() selects elements based on conditions, and reduce() combines all elements into a single value.
+**Definition:** Three powerful array methods to transform data.
 
-**Exp:** Yeh teen array ke superpowers hain - map() har element ko transform karta hai, filter() condition ke hisaab se elements choose karta hai, reduce() sab elements ko combine karke ek value banata hai.
+**map() Exp:** Har element ko change karke naya array banata hai. Jaise sabko double kar dena.
+**filter() Exp:** Condition ke hisaab se elements choose karta hai. Jaise sirf even numbers nikalna.
+**reduce() Exp:** Poore array ko ek value mein convert karta hai. Jaise sabka sum nikalna.
 
 **Theory:**
 Higher-order array methods for transforming and processing data.
@@ -878,21 +859,21 @@ Higher-order array methods for transforming and processing data.
 const numbers = [1, 2, 3, 4, 5];
 
 // map - Transform each element
-const doubled = numbers.map(num => num * 2);
+const doubled = numbers.map((num) => num * 2);
 console.log(doubled); // [2, 4, 6, 8, 10]
 
 const users = [
   { name: "John", age: 25 },
-  { name: "Jane", age: 30 }
+  { name: "Jane", age: 30 },
 ];
-const names = users.map(user => user.name);
+const names = users.map((user) => user.name);
 console.log(names); // ["John", "Jane"]
 
 // filter - Select elements that meet condition
-const evens = numbers.filter(num => num % 2 === 0);
+const evens = numbers.filter((num) => num % 2 === 0);
 console.log(evens); // [2, 4]
 
-const adults = users.filter(user => user.age >= 18);
+const adults = users.filter((user) => user.age >= 18);
 console.log(adults); // Both users
 
 // reduce - Reduce array to single value
@@ -904,8 +885,8 @@ console.log(max); // 5
 
 // Chaining
 const result = numbers
-  .filter(num => num % 2 === 0)  // [2, 4]
-  .map(num => num * 2)           // [4, 8]
+  .filter((num) => num % 2 === 0) // [2, 4]
+  .map((num) => num * 2) // [4, 8]
   .reduce((acc, num) => acc + num, 0); // 12
 console.log(result); // 12
 
@@ -924,9 +905,9 @@ console.log(count); // { apple: 2, banana: 2, orange: 1 }
 
 ## 17. Objects
 
-**Definition:** Objects are collections of key-value pairs where keys are strings (or Symbols) and values can be any data type. They represent real-world entities with properties and methods.
+**Definition:** Objects store data in key-value pairs, like a dictionary.
 
-**Exp:** Objects matlab real life ki cheezein represent karte hain. Jaise ek person object - uske properties hain (name, age) aur methods hain (walk, talk). Key-value pairs mein data store karte hain.
+**Exp:** Objects matlab real life ki cheezein represent karte hain. Jaise person object - naam, umar, address sab ek jagah store kar sakte hain. Key-value pairs jaise dictionary mein word aur meaning.
 
 **Theory:**
 Objects are collections of key-value pairs.
@@ -938,8 +919,8 @@ const obj2 = new Object();
 const obj3 = Object.create(null);
 
 // Accessing properties
-console.log(obj1.name);      // Dot notation
-console.log(obj1["name"]);   // Bracket notation
+console.log(obj1.name); // Dot notation
+console.log(obj1["name"]); // Bracket notation
 
 // Adding/Modifying
 obj1.city = "New York";
@@ -951,29 +932,29 @@ delete obj1.age;
 // Methods
 const person = {
   name: "John",
-  greet: function() {
+  greet: function () {
     console.log("Hello, " + this.name);
   },
   // ES6 shorthand
   sayHi() {
     console.log("Hi!");
-  }
+  },
 };
 
 // Object methods
-const keys = Object.keys(obj1);        // Array of keys
-const values = Object.values(obj1);    // Array of values
-const entries = Object.entries(obj1);  // Array of [key, value] pairs
+const keys = Object.keys(obj1); // Array of keys
+const values = Object.values(obj1); // Array of values
+const entries = Object.entries(obj1); // Array of [key, value] pairs
 
 // Check property
-console.log("name" in obj1);           // true
+console.log("name" in obj1); // true
 console.log(obj1.hasOwnProperty("name")); // true
 
 // Merge objects
 const obj4 = { a: 1, b: 2 };
 const obj5 = { b: 3, c: 4 };
 const merged = Object.assign({}, obj4, obj5); // { a: 1, b: 3, c: 4 }
-const merged2 = { ...obj4, ...obj5 };         // Same result
+const merged2 = { ...obj4, ...obj5 }; // Same result
 
 // Freeze & Seal
 const frozen = Object.freeze({ x: 1 });
@@ -993,11 +974,13 @@ console.log(name, age);
 
 ## 18. Shallow vs Deep Copy
 
-**Definition:** Shallow copy creates a new object but nested objects are still referenced from the original. Deep copy creates a completely independent copy with all nested objects also copied.
+**Definition:** Two ways to copy objects.
 
-**Exp:** Shallow copy matlab sirf upar wala layer copy karna, andar ke references same rehte hain. Deep copy matlab poora object copy karna, andar tak. Jaise photocopy vs original document ka duplicate banana.
+**Shallow Copy Exp:** Sirf upar wala layer copy karta hai. Andar ke references same rehte hain. Jaise room ka photocopy - furniture same rehta hai.
+**Deep Copy Exp:** Poora object copy karta hai, andar tak. Bilkul independent copy. Jaise ghar ka duplicate banana - sab kuch naya.
 
 **Theory:**
+
 - Shallow copy: Copies only the first level, nested objects are still referenced
 - Deep copy: Copies all levels, creating completely independent objects
 
@@ -1006,16 +989,16 @@ console.log(name, age);
 const original = {
   name: "John",
   address: {
-    city: "New York"
-  }
+    city: "New York",
+  },
 };
 
 // Method 1: Spread operator (shallow)
 const copy1 = { ...original };
 copy1.name = "Jane";
 copy1.address.city = "LA";
-console.log(original.name);           // "John" (not affected)
-console.log(original.address.city);   // "LA" (affected!)
+console.log(original.name); // "John" (not affected)
+console.log(original.address.city); // "LA" (affected!)
 
 // Method 2: Object.assign (shallow)
 const copy2 = Object.assign({}, original);
@@ -1033,8 +1016,8 @@ console.log(arr[2][0]); // 99 (affected!)
 const original2 = {
   name: "John",
   address: {
-    city: "New York"
-  }
+    city: "New York",
+  },
 };
 const deepCopy1 = JSON.parse(JSON.stringify(original2));
 deepCopy1.address.city = "LA";
@@ -1045,11 +1028,11 @@ function deepClone(obj) {
   if (obj === null || typeof obj !== "object") {
     return obj;
   }
-  
+
   if (Array.isArray(obj)) {
-    return obj.map(item => deepClone(item));
+    return obj.map((item) => deepClone(item));
   }
-  
+
   const cloned = {};
   for (let key in obj) {
     if (obj.hasOwnProperty(key)) {
@@ -1063,8 +1046,8 @@ const original3 = {
   name: "John",
   hobbies: ["reading", "coding"],
   address: {
-    city: "New York"
-  }
+    city: "New York",
+  },
 };
 const deepCopy2 = deepClone(original3);
 deepCopy2.address.city = "LA";
@@ -1080,9 +1063,9 @@ const deepCopy3 = structuredClone(original3);
 
 ## 19. DOM (Document Object Model)
 
-**Definition:** DOM is a programming interface for HTML documents. It represents the page structure as a tree of objects that can be manipulated using JavaScript.
+**Definition:** Way to control HTML elements using JavaScript.
 
-**Exp:** DOM matlab HTML page ko JavaScript ke through control karna. Jaise TV remote se TV control karte hain, waise hi DOM se webpage ke elements ko change kar sakte hain.
+**Exp:** DOM matlab HTML page ko JavaScript se control karna. Jaise TV remote se TV control karte hain, waise hi DOM se webpage ke buttons, text, etc. change kar sakte hain.
 
 **Theory:**
 DOM is a programming interface for HTML documents. It represents the page as a tree structure.
@@ -1141,9 +1124,9 @@ const prevSibling = el1.previousElementSibling;
 
 ## 20. Event Handling
 
-**Definition:** Event handling is the process of capturing and responding to user interactions or browser actions (like clicks, key presses, form submissions) using JavaScript functions.
+**Definition:** Responding to user actions like clicks, typing, etc.
 
-**Exp:** Event handling matlab user ke actions (click, type, etc.) ko sunna aur unpe reaction dena. Jaise doorbell bajne pe darwaza kholna - event hai bell bajana, handling hai darwaza kholna.
+**Exp:** Event handling matlab user ke actions ko sunna aur reaction dena. Jaise doorbell bajne pe darwaza kholna - bell bajana event hai, darwaza kholna handling hai.
 
 **Theory:**
 Events are actions that happen in the browser (clicks, key presses, etc.).
@@ -1154,12 +1137,12 @@ Events are actions that happen in the browser (clicks, key presses, etc.).
 
 // Method 2: DOM property
 const btn = document.getElementById("myBtn");
-btn.onclick = function() {
+btn.onclick = function () {
   console.log("Clicked!");
 };
 
 // Method 3: addEventListener (best practice)
-btn.addEventListener("click", function(event) {
+btn.addEventListener("click", function (event) {
   console.log("Button clicked!");
   console.log(event.target); // The element that was clicked
 });
@@ -1194,14 +1177,14 @@ element.addEventListener("blur", handler);
 
 // Event object
 btn.addEventListener("click", (e) => {
-  console.log(e.type);        // "click"
-  console.log(e.target);      // Element clicked
+  console.log(e.type); // "click"
+  console.log(e.target); // Element clicked
   console.log(e.currentTarget); // Element with listener
-  console.log(e.clientX);     // Mouse X position
-  console.log(e.clientY);     // Mouse Y position
-  
-  e.preventDefault();         // Prevent default action
-  e.stopPropagation();        // Stop bubbling
+  console.log(e.clientX); // Mouse X position
+  console.log(e.clientY); // Mouse Y position
+
+  e.preventDefault(); // Prevent default action
+  e.stopPropagation(); // Stop bubbling
 });
 
 // Form example
@@ -1219,9 +1202,9 @@ form.addEventListener("submit", (e) => {
 
 ## 21. Event Bubbling
 
-**Definition:** Event bubbling is the process where an event starts from the target element and propagates upward through its parent elements to the root of the DOM tree.
+**Definition:** Events travel from child element up to parent elements.
 
-**Exp:** Event bubbling matlab event neeche se upar ki taraf jaata hai. Jaise paani mein bubble upar aata hai. Child element se parent elements tak event pahunchta hai.
+**Exp:** Event bubbling matlab event neeche se upar jaata hai. Jaise paani mein bubble upar aata hai. Button click kiya to parent div mein bhi event jaayega.
 
 **Theory:**
 Event bubbling is when an event starts from the target element and bubbles up to the root.
@@ -1282,17 +1265,29 @@ Event capturing is the opposite of bubbling - event goes from root to target ele
 // Same HTML as above
 
 // Use third parameter 'true' for capturing phase
-parent.addEventListener("click", () => {
-  console.log("Parent div clicked (capturing)");
-}, true);
+parent.addEventListener(
+  "click",
+  () => {
+    console.log("Parent div clicked (capturing)");
+  },
+  true,
+);
 
-child.addEventListener("click", () => {
-  console.log("Child div clicked (capturing)");
-}, true);
+child.addEventListener(
+  "click",
+  () => {
+    console.log("Child div clicked (capturing)");
+  },
+  true,
+);
 
-btn.addEventListener("click", () => {
-  console.log("Button clicked");
-}, true);
+btn.addEventListener(
+  "click",
+  () => {
+    console.log("Button clicked");
+  },
+  true,
+);
 
 // Output when button clicked (capturing phase):
 // "Parent div clicked (capturing)"
@@ -1300,13 +1295,21 @@ btn.addEventListener("click", () => {
 // "Button clicked"
 
 // Event flow: Capturing -> Target -> Bubbling
-parent.addEventListener("click", () => {
-  console.log("Parent - capturing");
-}, true);
+parent.addEventListener(
+  "click",
+  () => {
+    console.log("Parent - capturing");
+  },
+  true,
+);
 
-parent.addEventListener("click", () => {
-  console.log("Parent - bubbling");
-}, false);
+parent.addEventListener(
+  "click",
+  () => {
+    console.log("Parent - bubbling");
+  },
+  false,
+);
 
 btn.addEventListener("click", () => {
   console.log("Button clicked");
@@ -1334,7 +1337,7 @@ Event delegation uses bubbling to handle events at a higher level instead of add
 ```javascript
 // Without delegation (inefficient for many items)
 const buttons = document.querySelectorAll(".item");
-buttons.forEach(btn => {
+buttons.forEach((btn) => {
   btn.addEventListener("click", () => {
     console.log("Button clicked");
   });
@@ -1380,7 +1383,7 @@ todoList.addEventListener("click", (e) => {
   if (e.target.classList.contains("complete-btn")) {
     e.target.parentElement.classList.toggle("completed");
   }
-  
+
   // Handle delete
   if (e.target.classList.contains("delete-btn")) {
     e.target.parentElement.remove();
@@ -1408,7 +1411,7 @@ function greet(name, callback) {
   callback();
 }
 
-greet("John", function() {
+greet("John", function () {
   console.log("Callback executed");
 });
 
@@ -1425,10 +1428,10 @@ fetchData((data) => {
 });
 
 // Callback hell (pyramid of doom)
-getData(function(a) {
-  getMoreData(a, function(b) {
-    getMoreData(b, function(c) {
-      getMoreData(c, function(d) {
+getData(function (a) {
+  getMoreData(a, function (b) {
+    getMoreData(b, function (c) {
+      getMoreData(c, function (d) {
         console.log(d);
       });
     });
@@ -1440,7 +1443,7 @@ function readFile(filename, callback) {
   // Simulating file read
   const error = null;
   const data = "File content";
-  
+
   if (error) {
     callback(error, null);
   } else {
@@ -1471,9 +1474,9 @@ const doubled = numbers.map((num) => num * 2);
 
 ## 25. Promises
 
-**Definition:** Promises represent the eventual completion (or failure) of an asynchronous operation and its resulting value. They provide a cleaner alternative to callbacks for handling async operations.
+**Definition:** Promises handle async operations and represent future values.
 
-**Exp:** Promise matlab kisi kaam ka wada jo abhi complete nahi hua hai but future mein hoga. Teen states hain - pending (intezaar), fulfilled (ho gaya), rejected (fail ho gaya). Callback hell se bachne ke liye use karte hain.
+**Exp:** Promise matlab vaada. Jaise kisi se kahte ho "main 5 minute mein kaam kar dunga" - yeh promise hai. Teen states: pending (wait kar rahe hain), fulfilled (ho gaya), rejected (fail ho gaya).
 
 **Theory:**
 Promises represent eventual completion (or failure) of an asynchronous operation.
@@ -1484,7 +1487,7 @@ Promises represent eventual completion (or failure) of an asynchronous operation
 // Creating a promise
 const promise = new Promise((resolve, reject) => {
   const success = true;
-  
+
   setTimeout(() => {
     if (success) {
       resolve("Operation successful!");
@@ -1619,29 +1622,29 @@ async function getDataInParallel() {
   const [user, posts, comments] = await Promise.all([
     fetchUser(1),
     fetchPosts(1),
-    fetchComments(1)
+    fetchComments(1),
   ]);
   return { user, posts, comments };
 }
 
 // Practical example
 function delay(ms) {
-  return new Promise(resolve => setTimeout(resolve, ms));
+  return new Promise((resolve) => setTimeout(resolve, ms));
 }
 
 async function processData() {
   console.log("Starting...");
-  
+
   await delay(1000);
   console.log("After 1 second");
-  
+
   await delay(1000);
   console.log("After 2 seconds");
-  
+
   return "Done!";
 }
 
-processData().then(result => console.log(result));
+processData().then((result) => console.log(result));
 
 // Converting Promise chain to async/await
 // Before (Promises)
@@ -1678,6 +1681,7 @@ async function getUserPosts() {
 The event loop is how JavaScript handles asynchronous operations in a single-threaded environment.
 
 **Components:**
+
 - Call Stack
 - Web APIs
 - Callback Queue (Task Queue)
@@ -1692,10 +1696,9 @@ setTimeout(() => {
   console.log("4. Timeout");
 }, 0);
 
-Promise.resolve()
-  .then(() => {
-    console.log("3. Promise");
-  });
+Promise.resolve().then(() => {
+  console.log("3. Promise");
+});
 
 console.log("2. End");
 
@@ -1731,12 +1734,12 @@ console.log("6");
 // Practical example
 async function asyncFunction() {
   console.log("1");
-  
+
   await Promise.resolve();
   console.log("2");
-  
+
   setTimeout(() => console.log("3"), 0);
-  
+
   console.log("4");
 }
 
@@ -1753,6 +1756,7 @@ console.log("5");
 ## 28. setTimeout / setInterval
 
 **Theory:**
+
 - `setTimeout`: Executes code once after a delay
 - `setInterval`: Executes code repeatedly at intervals
 
@@ -1785,7 +1789,7 @@ let count = 0;
 const intervalId = setInterval(() => {
   count++;
   console.log("Count:", count);
-  
+
   if (count === 5) {
     clearInterval(intervalId);
   }
@@ -1794,13 +1798,13 @@ const intervalId = setInterval(() => {
 // Practical: Countdown timer
 function countdown(seconds) {
   let remaining = seconds;
-  
+
   console.log(remaining);
-  
+
   const intervalId = setInterval(() => {
     remaining--;
     console.log(remaining);
-    
+
     if (remaining === 0) {
       clearInterval(intervalId);
       console.log("Done!");
@@ -1826,7 +1830,7 @@ recursiveTimeout();
 // Debounce example
 function debounce(func, delay) {
   let timeoutId;
-  return function(...args) {
+  return function (...args) {
     clearTimeout(timeoutId);
     timeoutId = setTimeout(() => {
       func.apply(this, args);
@@ -1841,11 +1845,11 @@ const debouncedSearch = debounce((query) => {
 // Throttle example
 function throttle(func, limit) {
   let inThrottle;
-  return function(...args) {
+  return function (...args) {
     if (!inThrottle) {
       func.apply(this, args);
       inThrottle = true;
-      setTimeout(() => inThrottle = false, limit);
+      setTimeout(() => (inThrottle = false), limit);
     }
   };
 }
@@ -1863,6 +1867,7 @@ const throttledScroll = throttle(() => {
 
 **Theory:**
 Web Storage API for storing data in the browser.
+
 - `localStorage`: Persists even after browser closes
 - `sessionStorage`: Cleared when tab/browser closes
 
@@ -1921,21 +1926,21 @@ class ShoppingCart {
   constructor() {
     this.items = JSON.parse(localStorage.getItem("cart")) || [];
   }
-  
+
   addItem(item) {
     this.items.push(item);
     this.save();
   }
-  
+
   removeItem(itemId) {
-    this.items = this.items.filter(item => item.id !== itemId);
+    this.items = this.items.filter((item) => item.id !== itemId);
     this.save();
   }
-  
+
   save() {
     localStorage.setItem("cart", JSON.stringify(this.items));
   }
-  
+
   clear() {
     this.items = [];
     localStorage.removeItem("cart");
@@ -1979,7 +1984,7 @@ const PI = 3.14;
 
 // 2. Arrow functions
 const add = (a, b) => a + b;
-const square = x => x * x;
+const square = (x) => x * x;
 
 // 3. Template literals
 const name = "John";
@@ -2015,11 +2020,12 @@ console.log(sum(1, 2, 3, 4)); // 10
 const name = "John";
 const age = 25;
 const user = {
-  name,  // shorthand for name: name
+  name, // shorthand for name: name
   age,
-  greet() {  // shorthand for greet: function()
+  greet() {
+    // shorthand for greet: function()
     console.log("Hello");
-  }
+  },
 };
 
 // 9. Classes
@@ -2028,11 +2034,11 @@ class Person {
     this.name = name;
     this.age = age;
   }
-  
+
   greet() {
     console.log(`Hello, I'm ${this.name}`);
   }
-  
+
   static species() {
     return "Homo sapiens";
   }
@@ -2046,7 +2052,7 @@ class Student extends Person {
     super(name, age);
     this.grade = grade;
   }
-  
+
   study() {
     console.log(`${this.name} is studying`);
   }
@@ -2085,16 +2091,16 @@ const sym2 = Symbol("description");
 console.log(sym1 === sym2); // false
 
 // 16. String methods
-"hello".startsWith("he");  // true
-"hello".endsWith("lo");    // true
-"hello".includes("ll");    // true
-"hello".repeat(3);         // "hellohellohello"
+"hello".startsWith("he"); // true
+"hello".endsWith("lo"); // true
+"hello".includes("ll"); // true
+"hello".repeat(3); // "hellohellohello"
 
 // 17. Array methods
-Array.from("hello");       // ["h", "e", "l", "l", "o"]
-Array.of(1, 2, 3);         // [1, 2, 3]
-[1, 2, 3].find(x => x > 1);     // 2
-[1, 2, 3].findIndex(x => x > 1); // 1
+Array.from("hello"); // ["h", "e", "l", "l", "o"]
+Array.of(1, 2, 3); // [1, 2, 3]
+[1, 2, 3].find((x) => x > 1); // 2
+[1, 2, 3].findIndex((x) => x > 1); // 1
 
 // 18. Object methods
 Object.assign({}, obj1, obj2);
@@ -2179,9 +2185,9 @@ try {
 // Async error handling
 // With Promises
 fetch("https://api.example.com/data")
-  .then(response => response.json())
-  .then(data => console.log(data))
-  .catch(error => console.error("Fetch error:", error));
+  .then((response) => response.json())
+  .then((data) => console.log(data))
+  .catch((error) => console.error("Fetch error:", error));
 
 // With async/await
 async function fetchData() {
@@ -2208,23 +2214,23 @@ window.addEventListener("unhandledrejection", (event) => {
 // Practical example: Form validation
 function validateForm(formData) {
   const errors = [];
-  
+
   if (!formData.email) {
     errors.push("Email is required");
   } else if (!formData.email.includes("@")) {
     errors.push("Invalid email format");
   }
-  
+
   if (!formData.password) {
     errors.push("Password is required");
   } else if (formData.password.length < 8) {
     errors.push("Password must be at least 8 characters");
   }
-  
+
   if (errors.length > 0) {
     throw new ValidationError(errors.join(", "));
   }
-  
+
   return true;
 }
 
@@ -2251,74 +2257,76 @@ JavaScript has some unusual behaviors that can be surprising.
 
 ```javascript
 // 1. typeof null
-console.log(typeof null);  // "object" (historical bug)
+console.log(typeof null); // "object" (historical bug)
 
 // 2. NaN is not equal to itself
-console.log(NaN === NaN);  // false
-console.log(Number.isNaN(NaN));  // true (correct way)
+console.log(NaN === NaN); // false
+console.log(Number.isNaN(NaN)); // true (correct way)
 
 // 3. Array comparison
-console.log([] == []);   // false (different references)
-console.log([] === []);  // false
+console.log([] == []); // false (different references)
+console.log([] === []); // false
 
 // 4. Type coercion weirdness
-console.log([] + []);    // "" (empty string)
-console.log([] + {});    // "[object Object]"
-console.log({} + []);    // "[object Object]"
-console.log(true + true);  // 2
+console.log([] + []); // "" (empty string)
+console.log([] + {}); // "[object Object]"
+console.log({} + []); // "[object Object]"
+console.log(true + true); // 2
 console.log(true + false); // 1
 
 // 5. Automatic semicolon insertion
 function test() {
-  return
+  return;
   {
-    value: 42
+    value: 42;
   }
 }
-console.log(test());  // undefined (not { value: 42 })
+console.log(test()); // undefined (not { value: 42 })
 
 // 6. parseInt quirks
-console.log(parseInt("08"));     // 8
-console.log(parseInt("10", 2));  // 2 (binary)
-console.log(["1", "2", "3"].map(parseInt));  // [1, NaN, NaN]
+console.log(parseInt("08")); // 8
+console.log(parseInt("10", 2)); // 2 (binary)
+console.log(["1", "2", "3"].map(parseInt)); // [1, NaN, NaN]
 // Fix: ["1", "2", "3"].map(Number)
 
 // 7. Floating point precision
-console.log(0.1 + 0.2);  // 0.30000000000000004
-console.log(0.1 + 0.2 === 0.3);  // false
+console.log(0.1 + 0.2); // 0.30000000000000004
+console.log(0.1 + 0.2 === 0.3); // false
 // Fix: Use toFixed() or libraries for precise math
 
 // 8. Comparisons with null and undefined
-console.log(null == undefined);   // true
-console.log(null === undefined);  // false
-console.log(null > 0);   // false
-console.log(null == 0);  // false
-console.log(null >= 0);  // true (weird!)
+console.log(null == undefined); // true
+console.log(null === undefined); // false
+console.log(null > 0); // false
+console.log(null == 0); // false
+console.log(null >= 0); // true (weird!)
 
 // 9. Math.max() and Math.min()
-console.log(Math.max());  // -Infinity
-console.log(Math.min());  // Infinity
+console.log(Math.max()); // -Infinity
+console.log(Math.min()); // Infinity
 
 // 10. Array holes
-const arr = [1, 2, , 4];  // sparse array
-console.log(arr.length);  // 4
-console.log(arr[2]);      // undefined
-console.log(2 in arr);    // false (hole exists)
+const arr = [1, 2, , 4]; // sparse array
+console.log(arr.length); // 4
+console.log(arr[2]); // undefined
+console.log(2 in arr); // false (hole exists)
 
 // 11. void operator
-console.log(void 0);  // undefined
-console.log(void "hello");  // undefined
+console.log(void 0); // undefined
+console.log(void "hello"); // undefined
 
 // 12. Comma operator
 let x = (1, 2, 3);
-console.log(x);  // 3 (returns last value)
+console.log(x); // 3 (returns last value)
 
 // 13. with statement (deprecated, don't use)
 // Creates ambiguous scope
 
 // 14. Function declarations in blocks
 if (true) {
-  function foo() { return 1; }
+  function foo() {
+    return 1;
+  }
 }
 // Behavior varies across browsers
 
@@ -2326,41 +2334,41 @@ if (true) {
 loop1: for (let i = 0; i < 3; i++) {
   loop2: for (let j = 0; j < 3; j++) {
     if (i === 1 && j === 1) {
-      break loop1;  // breaks outer loop
+      break loop1; // breaks outer loop
     }
   }
 }
 
 // 16. Numbers
-console.log(999999999999999999);  // 1000000000000000000 (precision loss)
-console.log(0.1 + 0.1 + 0.1 - 0.3);  // 5.551115123125783e-17
+console.log(999999999999999999); // 1000000000000000000 (precision loss)
+console.log(0.1 + 0.1 + 0.1 - 0.3); // 5.551115123125783e-17
 
 // 17. String comparison
-console.log("2" > "12");  // true (lexicographic comparison)
-console.log("B" > "a");   // false ("B" = 66, "a" = 97 in ASCII)
+console.log("2" > "12"); // true (lexicographic comparison)
+console.log("B" > "a"); // false ("B" = 66, "a" = 97 in ASCII)
 
 // 18. Length property
 function foo() {}
-console.log(foo.length);  // 0 (number of parameters)
+console.log(foo.length); // 0 (number of parameters)
 
 function bar(a, b, c) {}
-console.log(bar.length);  // 3
+console.log(bar.length); // 3
 
 // 19. Array.sort()
 const nums = [1, 2, 10, 21];
 nums.sort();
-console.log(nums);  // [1, 10, 2, 21] (sorts as strings!)
+console.log(nums); // [1, 10, 2, 21] (sorts as strings!)
 // Fix: nums.sort((a, b) => a - b)
 
 // 20. Delete operator
 const obj = { a: 1, b: 2 };
 delete obj.a;
-console.log(obj);  // { b: 2 }
+console.log(obj); // { b: 2 }
 
 const arr2 = [1, 2, 3];
 delete arr2[1];
-console.log(arr2);  // [1, empty, 3]
-console.log(arr2.length);  // 3 (length unchanged!)
+console.log(arr2); // [1, empty, 3]
+console.log(arr2.length); // 3 (length unchanged!)
 ```
 
 [⬆️ Back to Top](#top)
@@ -2375,6 +2383,7 @@ console.log(arr2.length);  // 3 (length unchanged!)
 
 **Theory:**
 These methods allow you to explicitly set the value of `this` in a function.
+
 - **call()**: Calls function with specific `this` and individual arguments
 - **apply()**: Same as call but arguments passed as array
 - **bind()**: Returns new function with bound `this` (doesn't call immediately)
@@ -2412,10 +2421,10 @@ class Counter {
   constructor() {
     this.count = 0;
     // Without bind, 'this' would refer to button, not Counter
-    this.button = document.getElementById('btn');
-    this.button.addEventListener('click', this.increment.bind(this));
+    this.button = document.getElementById("btn");
+    this.button.addEventListener("click", this.increment.bind(this));
   }
-  
+
   increment() {
     this.count++;
     console.log(`Count: ${this.count}`);
@@ -2429,9 +2438,9 @@ class Counter {
 
 ## 34. Prototype & Inheritance
 
-**Definition:** Prototype is a mechanism by which JavaScript objects inherit features from one another. Every object has a prototype property that points to another object, creating a prototype chain for inheritance.
+**Definition:** Way objects inherit properties and methods from other objects.
 
-**Exp:** Prototype JavaScript mein inheritance ka tarika hai. Har object ke paas ek prototype hota hai jo parent ki tarah kaam karta hai. Properties aur methods prototype chain ke through inherit hote hain. Jaise family tree - bachhe parents se properties inherit karte hain.
+**Exp:** Prototype matlab inheritance system. Jaise bachha parents ki properties inherit karta hai, waise objects bhi doosre objects se properties inherit karte hain.
 
 **Theory:**
 Every JavaScript object has a prototype. Prototype is like a template that objects inherit properties and methods from. It's JavaScript's way of implementing inheritance.
@@ -2446,11 +2455,11 @@ function Animal(name, species) {
 }
 
 // Add methods to prototype (shared by all instances)
-Animal.prototype.speak = function() {
+Animal.prototype.speak = function () {
   return `${this.name} the ${this.species} makes a sound`;
 };
 
-Animal.prototype.eat = function(food) {
+Animal.prototype.eat = function (food) {
   return `${this.name} is eating ${food}`;
 };
 
@@ -2472,21 +2481,21 @@ Dog.prototype = Object.create(Animal.prototype);
 Dog.prototype.constructor = Dog;
 
 // Override parent method
-Dog.prototype.speak = function() {
+Dog.prototype.speak = function () {
   return `${this.name} the ${this.breed} barks: Woof!`;
 };
 
 // Add new method
-Dog.prototype.wagTail = function() {
+Dog.prototype.wagTail = function () {
   return `${this.name} is wagging tail!`;
 };
 
 const myDog = new Dog("Buddy", "Golden Retriever");
-console.log(myDog.speak());   // "Buddy the Golden Retriever barks: Woof!"
+console.log(myDog.speak()); // "Buddy the Golden Retriever barks: Woof!"
 console.log(myDog.eat("bone")); // "Buddy is eating bone" (inherited from Animal)
 
 // Prototype chain
-console.log(myDog.__proto__ === Dog.prototype);           // true
+console.log(myDog.__proto__ === Dog.prototype); // true
 console.log(Dog.prototype.__proto__ === Animal.prototype); // true
 console.log(Animal.prototype.__proto__ === Object.prototype); // true
 
@@ -2496,7 +2505,7 @@ class Vehicle {
     this.make = make;
     this.model = model;
   }
-  
+
   start() {
     return `${this.make} ${this.model} is starting`;
   }
@@ -2507,7 +2516,7 @@ class Car extends Vehicle {
     super(make, model); // Call parent constructor
     this.doors = doors;
   }
-  
+
   honk() {
     return `${this.make} ${this.model}: BEEP BEEP!`;
   }
@@ -2515,7 +2524,7 @@ class Car extends Vehicle {
 
 const myCar = new Car("Toyota", "Camry", 4);
 console.log(myCar.start()); // "Toyota Camry is starting"
-console.log(myCar.honk());  // "Toyota Camry: BEEP BEEP!"
+console.log(myCar.honk()); // "Toyota Camry: BEEP BEEP!"
 ```
 
 [⬆️ Back to Top](#top)
@@ -2524,11 +2533,13 @@ console.log(myCar.honk());  // "Toyota Camry: BEEP BEEP!"
 
 ## 35. null vs undefined
 
-**Definition:** Both represent absence of value but in different ways. undefined means a variable has been declared but not assigned a value, while null is an intentional assignment representing "no value" or "empty".
+**Definition:** Two ways to represent "nothing" in JavaScript.
 
-**Exp:** Dono 'kuch nahi' mean karte hain but different context mein. undefined matlab JavaScript khud set karta hai jab koi value assign nahi ki gayi, null matlab programmer intentionally 'empty' set karta hai. Jaise undefined = 'pata nahi', null = 'jaan bujhke khali rakha'.
+**null Exp:** Intentionally khali value set kiya hai. Developer ne purposely empty rakha hai.
+**undefined Exp:** Variable declare kiya but value assign nahi kiya. JavaScript ka default empty state.
 
 **Theory:**
+
 - **undefined**: Variable declared but not assigned, or property that doesn't exist
 - **null**: Intentional absence of value, must be explicitly assigned
 
@@ -2557,15 +2568,15 @@ console.log(b); // null
 
 const user = {
   name: "Alice",
-  avatar: null // Explicitly no avatar
+  avatar: null, // Explicitly no avatar
 };
 
 // Type checking
 console.log(typeof undefined); // "undefined"
-console.log(typeof null);      // "object" (this is a known bug in JavaScript!)
+console.log(typeof null); // "object" (this is a known bug in JavaScript!)
 
 // Comparison
-console.log(null == undefined);  // true (loose equality)
+console.log(null == undefined); // true (loose equality)
 console.log(null === undefined); // false (strict equality)
 
 // Practical usage
@@ -2614,6 +2625,7 @@ function greetUser2(name) {
 
 **Theory:**
 Both are techniques to limit how often a function is called, but they work differently:
+
 - **Debounce**: Delays execution until after a pause in activity
 - **Throttle**: Limits execution to once per time period
 
@@ -2624,11 +2636,11 @@ Both are techniques to limit how often a function is called, but they work diffe
 // DEBOUNCE - waits for pause in activity
 function debounce(func, delay) {
   let timeoutId;
-  
-  return function(...args) {
+
+  return function (...args) {
     // Clear previous timeout
     clearTimeout(timeoutId);
-    
+
     // Set new timeout
     timeoutId = setTimeout(() => {
       func.apply(this, args);
@@ -2637,13 +2649,13 @@ function debounce(func, delay) {
 }
 
 // Usage: Search as user types
-const searchInput = document.getElementById('search');
+const searchInput = document.getElementById("search");
 const debouncedSearch = debounce((query) => {
   console.log(`Searching for: ${query}`);
   // API call here
 }, 300);
 
-searchInput.addEventListener('input', (e) => {
+searchInput.addEventListener("input", (e) => {
   debouncedSearch(e.target.value);
 });
 // Only searches 300ms after user stops typing
@@ -2651,10 +2663,10 @@ searchInput.addEventListener('input', (e) => {
 // THROTTLE - limits frequency
 function throttle(func, delay) {
   let lastCall = 0;
-  
-  return function(...args) {
+
+  return function (...args) {
     const now = new Date().getTime();
-    
+
     if (now - lastCall >= delay) {
       lastCall = now;
       func.apply(this, args);
@@ -2664,30 +2676,33 @@ function throttle(func, delay) {
 
 // Usage: Scroll event handling
 const throttledScroll = throttle(() => {
-  console.log('Scroll event handled');
+  console.log("Scroll event handled");
   // Update navbar, lazy load images, etc.
 }, 100);
 
-window.addEventListener('scroll', throttledScroll);
+window.addEventListener("scroll", throttledScroll);
 // Runs at most once every 100ms during scrolling
 
 // Advanced throttle with trailing call
 function throttleAdvanced(func, delay) {
   let lastCall = 0;
   let timeoutId;
-  
-  return function(...args) {
+
+  return function (...args) {
     const now = new Date().getTime();
-    
+
     if (now - lastCall >= delay) {
       lastCall = now;
       func.apply(this, args);
     } else {
       clearTimeout(timeoutId);
-      timeoutId = setTimeout(() => {
-        lastCall = new Date().getTime();
-        func.apply(this, args);
-      }, delay - (now - lastCall));
+      timeoutId = setTimeout(
+        () => {
+          lastCall = new Date().getTime();
+          func.apply(this, args);
+        },
+        delay - (now - lastCall),
+      );
     }
   };
 }
@@ -2696,25 +2711,25 @@ function throttleAdvanced(func, delay) {
 
 // Debounce: Form validation
 const validateEmail = debounce((email) => {
-  if (email.includes('@')) {
-    console.log('Email is valid');
+  if (email.includes("@")) {
+    console.log("Email is valid");
   } else {
-    console.log('Email is invalid');
+    console.log("Email is invalid");
   }
 }, 500);
 
 // Throttle: Button clicks to prevent double submission
 const handleSubmit = throttle(() => {
-  console.log('Form submitted');
+  console.log("Form submitted");
   // Submit form logic
 }, 2000);
 
 // Throttle: API calls for autocomplete
 const fetchSuggestions = throttle((query) => {
   fetch(`/api/suggestions?q=${query}`)
-    .then(response => response.json())
-    .then(data => {
-      console.log('Suggestions:', data);
+    .then((response) => response.json())
+    .then((data) => {
+      console.log("Suggestions:", data);
     });
 }, 300);
 
@@ -2743,13 +2758,13 @@ Memory leak occurs when your application keeps references to objects that are no
 
 // 1. Forgotten timers
 function memoryLeakTimer() {
-  const data = new Array(1000000).fill('some data');
-  
+  const data = new Array(1000000).fill("some data");
+
   setInterval(() => {
     // This keeps 'data' in memory forever
-    console.log('Timer running');
+    console.log("Timer running");
   }, 1000);
-  
+
   // FIX: Clear the timer
   // const timerId = setInterval(...);
   // clearInterval(timerId);
@@ -2757,30 +2772,30 @@ function memoryLeakTimer() {
 
 // 2. Event listeners not removed
 function memoryLeakListener() {
-  const button = document.getElementById('myButton');
-  const largeData = new Array(1000000).fill('data');
-  
+  const button = document.getElementById("myButton");
+  const largeData = new Array(1000000).fill("data");
+
   function handleClick() {
-    console.log('Button clicked', largeData.length);
+    console.log("Button clicked", largeData.length);
   }
-  
-  button.addEventListener('click', handleClick);
-  
+
+  button.addEventListener("click", handleClick);
+
   // If button is removed from DOM but listener isn't removed,
   // both button and largeData stay in memory
-  
+
   // FIX: Remove listener when done
   // button.removeEventListener('click', handleClick);
 }
 
 // 3. Closures keeping references
 function memoryLeakClosure() {
-  const largeArray = new Array(1000000).fill('data');
-  
-  return function() {
+  const largeArray = new Array(1000000).fill("data");
+
+  return function () {
     // Even if we don't use largeArray here,
     // closure keeps reference to it
-    console.log('Function called');
+    console.log("Function called");
   };
 }
 
@@ -2790,24 +2805,24 @@ const leakyFunction = memoryLeakClosure();
 // 4. Global variables
 function memoryLeakGlobal() {
   // Accidentally creating global variable
-  globalData = new Array(1000000).fill('data'); // No 'var', 'let', or 'const'
-  
+  globalData = new Array(1000000).fill("data"); // No 'var', 'let', or 'const'
+
   // Global variables are never garbage collected
 }
 
 // 5. Detached DOM nodes
 function memoryLeakDOM() {
-  const parent = document.getElementById('parent');
-  const child = document.createElement('div');
-  
+  const parent = document.getElementById("parent");
+  const child = document.createElement("div");
+
   parent.appendChild(child);
-  
+
   // Keep reference to child
   window.childReference = child;
-  
+
   // Remove parent from DOM
   parent.remove();
-  
+
   // child and parent are still in memory due to reference
   // FIX: window.childReference = null;
 }
@@ -2816,10 +2831,10 @@ function memoryLeakDOM() {
 function memoryLeakCircular() {
   const obj1 = {};
   const obj2 = {};
-  
+
   obj1.ref = obj2;
   obj2.ref = obj1;
-  
+
   // In old browsers, this could cause memory leaks
   // Modern garbage collectors handle this
 }
@@ -2833,13 +2848,13 @@ class Component {
       this.update();
     }, 1000);
   }
-  
+
   destroy() {
     clearInterval(this.timerId); // Always clean up!
   }
-  
+
   update() {
-    console.log('Component updated');
+    console.log("Component updated");
   }
 }
 
@@ -2847,15 +2862,15 @@ class Component {
 class EventComponent {
   constructor() {
     this.handleClick = this.handleClick.bind(this);
-    document.addEventListener('click', this.handleClick);
+    document.addEventListener("click", this.handleClick);
   }
-  
+
   destroy() {
-    document.removeEventListener('click', this.handleClick);
+    document.removeEventListener("click", this.handleClick);
   }
-  
+
   handleClick() {
-    console.log('Clicked');
+    console.log("Clicked");
   }
 }
 
@@ -2880,18 +2895,18 @@ expensiveObject = null; // Release reference
 // 5. Use AbortController for fetch requests
 async function fetchWithCleanup() {
   const controller = new AbortController();
-  
+
   try {
-    const response = await fetch('/api/data', {
-      signal: controller.signal
+    const response = await fetch("/api/data", {
+      signal: controller.signal,
     });
     return await response.json();
   } catch (error) {
-    if (error.name === 'AbortError') {
-      console.log('Request aborted');
+    if (error.name === "AbortError") {
+      console.log("Request aborted");
     }
   }
-  
+
   // Can abort if component unmounts
   // controller.abort();
 }
@@ -2901,9 +2916,9 @@ async function fetchWithCleanup() {
 // 1. Chrome DevTools Memory tab
 // 2. Performance.measureUserAgentSpecificMemory() API
 // 3. Monitor heap size
-if ('memory' in performance) {
-  console.log('Used JS heap:', performance.memory.usedJSHeapSize);
-  console.log('Total JS heap:', performance.memory.totalJSHeapSize);
+if ("memory" in performance) {
+  console.log("Used JS heap:", performance.memory.usedJSHeapSize);
+  console.log("Total JS heap:", performance.memory.totalJSHeapSize);
 }
 
 // 4. Simple memory monitoring
@@ -2938,51 +2953,50 @@ Async/await is syntactic sugar over Promises. When you use `await`, JavaScript p
 
 // This async/await code:
 async function fetchData() {
-  console.log('1. Starting');
-  const result = await fetch('/api/data');
-  console.log('3. Got result');
+  console.log("1. Starting");
+  const result = await fetch("/api/data");
+  console.log("3. Got result");
   return result.json();
 }
 
 // Is equivalent to this Promise code:
 function fetchDataPromise() {
-  console.log('1. Starting');
-  return fetch('/api/data')
-    .then(result => {
-      console.log('3. Got result');
-      return result.json();
-    });
+  console.log("1. Starting");
+  return fetch("/api/data").then((result) => {
+    console.log("3. Got result");
+    return result.json();
+  });
 }
 
 // Step-by-step execution
 async function stepByStep() {
-  console.log('Step 1: Function starts');
-  
+  console.log("Step 1: Function starts");
+
   // When await is hit:
   // 1. Expression is evaluated (Promise created)
   // 2. Function is suspended
   // 3. Control returns to caller
   // 4. Event loop continues with other tasks
-  const data = await new Promise(resolve => {
-    console.log('Step 2: Promise created, function suspended');
+  const data = await new Promise((resolve) => {
+    console.log("Step 2: Promise created, function suspended");
     setTimeout(() => {
-      console.log('Step 4: Promise resolving');
-      resolve('data');
+      console.log("Step 4: Promise resolving");
+      resolve("data");
     }, 1000);
   });
-  
+
   // When Promise resolves:
   // 1. Function resumes from this point
   // 2. 'data' gets the resolved value
-  console.log('Step 5: Function resumed with:', data);
+  console.log("Step 5: Function resumed with:", data);
   return data;
 }
 
-console.log('Step 0: Before calling async function');
-stepByStep().then(result => {
-  console.log('Step 6: Final result:', result);
+console.log("Step 0: Before calling async function");
+stepByStep().then((result) => {
+  console.log("Step 6: Final result:", result);
 });
-console.log('Step 3: After calling async function (continues immediately)');
+console.log("Step 3: After calling async function (continues immediately)");
 
 // Output:
 // Step 0: Before calling async function
@@ -3001,7 +3015,7 @@ async function withErrorHandling() {
     const result = await riskyOperation();
     return result;
   } catch (error) {
-    console.log('Error:', error.message);
+    console.log("Error:", error.message);
     throw error;
   }
 }
@@ -3009,29 +3023,29 @@ async function withErrorHandling() {
 // Becomes this Promise code:
 function withErrorHandlingPromise() {
   return riskyOperation()
-    .then(result => {
+    .then((result) => {
       return result;
     })
-    .catch(error => {
-      console.log('Error:', error.message);
+    .catch((error) => {
+      console.log("Error:", error.message);
       throw error;
     });
 }
 
 // Multiple awaits
 async function multipleAwaits() {
-  console.log('Start');
-  
+  console.log("Start");
+
   // Each await suspends the function
   const user = await fetchUser();
-  console.log('Got user:', user.name);
-  
+  console.log("Got user:", user.name);
+
   const posts = await fetchPosts(user.id);
-  console.log('Got posts:', posts.length);
-  
+  console.log("Got posts:", posts.length);
+
   const comments = await fetchComments(posts[0].id);
-  console.log('Got comments:', comments.length);
-  
+  console.log("Got comments:", comments.length);
+
   return { user, posts, comments };
 }
 
@@ -3039,38 +3053,38 @@ async function multipleAwaits() {
 
 // For parallel execution:
 async function parallelExecution() {
-  console.log('Start parallel');
-  
+  console.log("Start parallel");
+
   // Start all operations at once (don't await yet)
   const userPromise = fetchUser();
   const settingsPromise = fetchSettings();
   const notificationsPromise = fetchNotifications();
-  
+
   // Now await all of them
   const user = await userPromise;
   const settings = await settingsPromise;
   const notifications = await notificationsPromise;
-  
+
   // Or use Promise.all for cleaner syntax:
   // const [user, settings, notifications] = await Promise.all([
   //   fetchUser(),
   //   fetchSettings(),
   //   fetchNotifications()
   // ]);
-  
+
   return { user, settings, notifications };
 }
 
 // Async function always returns a Promise
 async function alwaysReturnsPromise() {
-  return 'hello'; // This becomes Promise.resolve('hello')
+  return "hello"; // This becomes Promise.resolve('hello')
 }
 
 console.log(alwaysReturnsPromise()); // Promise {<fulfilled>: 'hello'}
 
 // Even if you don't return anything
 async function noReturn() {
-  console.log('doing something');
+  console.log("doing something");
   // Implicitly returns Promise.resolve(undefined)
 }
 
@@ -3091,14 +3105,14 @@ async function useAsyncGenerator() {
 
 // ❌ Forgetting await
 async function forgotAwait() {
-  const result = fetch('/api/data'); // This is a Promise, not the data!
+  const result = fetch("/api/data"); // This is a Promise, not the data!
   console.log(result); // [object Promise]
   return result;
 }
 
 // ✅ Correct usage
 async function correctAwait() {
-  const result = await fetch('/api/data');
+  const result = await fetch("/api/data");
   console.log(result); // Response object
   return result;
 }
@@ -3115,7 +3129,7 @@ async function sequentialLoop(urls) {
 
 // ✅ Parallel processing
 async function parallelLoop(urls) {
-  const promises = urls.map(url => fetch(url));
+  const promises = urls.map((url) => fetch(url));
   return await Promise.all(promises);
 }
 
@@ -3125,22 +3139,21 @@ class APIService {
     try {
       // Function suspends here, event loop continues
       const response = await fetch(`/api/users/${userId}`);
-      
+
       if (!response.ok) {
         throw new Error(`HTTP error! status: ${response.status}`);
       }
-      
+
       // Function suspends here again
       const userData = await response.json();
-      
+
       // Both awaits completed, function resumes normally
       return {
         user: userData,
-        timestamp: Date.now()
+        timestamp: Date.now(),
       };
-      
     } catch (error) {
-      console.error('Failed to fetch user:', error);
+      console.error("Failed to fetch user:", error);
       throw error; // Re-throw to let caller handle
     }
   }
@@ -3170,23 +3183,25 @@ The event loop has specific phases that determine the order of execution for dif
 // 4. Render (if needed)
 
 // Detailed execution order
-console.log('1. Synchronous start');
+console.log("1. Synchronous start");
 
 // Macrotasks
-setTimeout(() => console.log('6. setTimeout 0ms'), 0);
-setTimeout(() => console.log('7. setTimeout 10ms'), 10);
+setTimeout(() => console.log("6. setTimeout 0ms"), 0);
+setTimeout(() => console.log("7. setTimeout 10ms"), 10);
 
 // Microtasks
-Promise.resolve().then(() => console.log('3. Promise 1'));
-queueMicrotask(() => console.log('4. queueMicrotask'));
+Promise.resolve().then(() => console.log("3. Promise 1"));
+queueMicrotask(() => console.log("4. queueMicrotask"));
 
 // More microtasks created by microtasks
-Promise.resolve().then(() => {
-  console.log('5. Promise 2');
-  return Promise.resolve();
-}).then(() => console.log('8. Chained Promise'));
+Promise.resolve()
+  .then(() => {
+    console.log("5. Promise 2");
+    return Promise.resolve();
+  })
+  .then(() => console.log("8. Chained Promise"));
 
-console.log('2. Synchronous end');
+console.log("2. Synchronous end");
 
 // Output:
 // 1. Synchronous start
@@ -3200,55 +3215,55 @@ console.log('2. Synchronous end');
 
 // Complex example showing all phases
 function demonstrateEventLoop() {
-  console.log('=== Event Loop Demo ===');
-  
+  console.log("=== Event Loop Demo ===");
+
   // Synchronous code (runs immediately)
-  console.log('1. Sync start');
-  
+  console.log("1. Sync start");
+
   // Schedule macrotasks
-  setTimeout(() => console.log('7. setTimeout 0'), 0);
-  setImmediate(() => console.log('8. setImmediate')); // Node.js only
-  
+  setTimeout(() => console.log("7. setTimeout 0"), 0);
+  setImmediate(() => console.log("8. setImmediate")); // Node.js only
+
   // Schedule I/O (macrotask)
-  if (typeof process !== 'undefined') {
-    process.nextTick(() => console.log('3. process.nextTick')); // Node.js - highest priority microtask
+  if (typeof process !== "undefined") {
+    process.nextTick(() => console.log("3. process.nextTick")); // Node.js - highest priority microtask
   }
-  
+
   // Schedule microtasks
   Promise.resolve().then(() => {
-    console.log('4. Promise 1');
-    
+    console.log("4. Promise 1");
+
     // Microtask inside microtask
-    Promise.resolve().then(() => console.log('5. Nested Promise'));
-    queueMicrotask(() => console.log('6. Nested queueMicrotask'));
+    Promise.resolve().then(() => console.log("5. Nested Promise"));
+    queueMicrotask(() => console.log("6. Nested queueMicrotask"));
   });
-  
-  queueMicrotask(() => console.log('2. queueMicrotask'));
-  
-  console.log('0. Sync end');
+
+  queueMicrotask(() => console.log("2. queueMicrotask"));
+
+  console.log("0. Sync end");
 }
 
 // Advanced: Mixing async/await with event loop
 async function mixedAsync() {
-  console.log('A1. Async function start');
-  
-  setTimeout(() => console.log('D. setTimeout in async'), 0);
-  
+  console.log("A1. Async function start");
+
+  setTimeout(() => console.log("D. setTimeout in async"), 0);
+
   await Promise.resolve();
-  console.log('B. After first await');
-  
-  await new Promise(resolve => {
-    console.log('C1. In Promise executor');
+  console.log("B. After first await");
+
+  await new Promise((resolve) => {
+    console.log("C1. In Promise executor");
     resolve();
   });
-  console.log('C2. After second await');
-  
-  return 'async done';
+  console.log("C2. After second await");
+
+  return "async done";
 }
 
-console.log('Start');
-mixedAsync().then(result => console.log('E.', result));
-console.log('End');
+console.log("Start");
+mixedAsync().then((result) => console.log("E.", result));
+console.log("End");
 
 // Output:
 // Start
@@ -3262,20 +3277,20 @@ console.log('End');
 
 // Browser vs Node.js differences
 function browserVsNode() {
-  console.log('1. Start');
-  
-  setTimeout(() => console.log('4. setTimeout'), 0);
-  
-  if (typeof process !== 'undefined') {
+  console.log("1. Start");
+
+  setTimeout(() => console.log("4. setTimeout"), 0);
+
+  if (typeof process !== "undefined") {
     // Node.js only
-    process.nextTick(() => console.log('2. process.nextTick'));
-    setImmediate(() => console.log('5. setImmediate'));
+    process.nextTick(() => console.log("2. process.nextTick"));
+    setImmediate(() => console.log("5. setImmediate"));
   }
-  
-  Promise.resolve().then(() => console.log('3. Promise'));
-  
-  console.log('1. End');
-  
+
+  Promise.resolve().then(() => console.log("3. Promise"));
+
+  console.log("1. End");
+
   // Browser output: Start, End, Promise, setTimeout
   // Node.js output: Start, End, process.nextTick, Promise, setTimeout, setImmediate
 }
@@ -3284,48 +3299,48 @@ function browserVsNode() {
 
 // Problem: UI blocking
 function blockingOperation() {
-  console.log('Starting blocking operation');
-  
+  console.log("Starting blocking operation");
+
   // This blocks the event loop
   const start = Date.now();
   while (Date.now() - start < 2000) {
     // Blocking for 2 seconds
   }
-  
-  console.log('Blocking operation done');
+
+  console.log("Blocking operation done");
 }
 
 // Solution: Break work into chunks
 function nonBlockingOperation() {
   let count = 0;
   const total = 1000000;
-  
+
   function processChunk() {
     const chunkSize = 10000;
     const end = Math.min(count + chunkSize, total);
-    
+
     while (count < end) {
       // Do some work
       count++;
     }
-    
+
     if (count < total) {
       // Use setTimeout to yield control back to event loop
       setTimeout(processChunk, 0);
     } else {
-      console.log('Non-blocking operation done');
+      console.log("Non-blocking operation done");
     }
   }
-  
+
   processChunk();
 }
 
 // Understanding microtask queue exhaustion
 function microtaskExhaustion() {
-  console.log('1. Start');
-  
-  setTimeout(() => console.log('3. setTimeout'), 0);
-  
+  console.log("1. Start");
+
+  setTimeout(() => console.log("3. setTimeout"), 0);
+
   function createMicrotask(n) {
     if (n > 0) {
       Promise.resolve().then(() => {
@@ -3334,11 +3349,11 @@ function microtaskExhaustion() {
       });
     }
   }
-  
+
   createMicrotask(3);
-  
-  console.log('1. End');
-  
+
+  console.log("1. End");
+
   // Output:
   // 1. Start
   // 1. End
@@ -3354,18 +3369,18 @@ function performanceExample() {
   function tooManyMicrotasks() {
     Promise.resolve().then(tooManyMicrotasks);
   }
-  
+
   // ✅ Good: Use macrotasks to allow other work
   function balancedWork() {
     setTimeout(balancedWork, 0);
   }
-  
+
   // ✅ Better: Use requestAnimationFrame for UI updates
   function animationWork() {
     // Do animation work
     requestAnimationFrame(animationWork);
   }
-  
+
   // ✅ Best: Use requestIdleCallback for non-urgent work
   function idleWork(deadline) {
     while (deadline.timeRemaining() > 0) {
@@ -3385,18 +3400,19 @@ function debugEventLoop() {
     console.log(`${name} took ${end - start}ms`);
     return result;
   }
-  
+
   // Detect long-running tasks
   const observer = new PerformanceObserver((list) => {
     list.getEntries().forEach((entry) => {
-      if (entry.duration > 50) { // Tasks longer than 50ms
-        console.warn('Long task detected:', entry);
+      if (entry.duration > 50) {
+        // Tasks longer than 50ms
+        console.warn("Long task detected:", entry);
       }
     });
   });
-  
-  if ('observe' in observer) {
-    observer.observe({ entryTypes: ['longtask'] });
+
+  if ("observe" in observer) {
+    observer.observe({ entryTypes: ["longtask"] });
   }
 }
 ```
@@ -3411,39 +3427,39 @@ function debugEventLoop() {
 
 ## 40. Module Pattern (IIFE)
 
-**Definition:** Module Pattern uses IIFE to create private scope and expose only selected functionality. It provides encapsulation by keeping internal details hidden while revealing a public API.
+**Definition:** Creates private and public parts in code using IIFE.
 
-**Exp:** Module pattern matlab private aur public members banane ka tarika. IIFE use karke private scope create karte hain jo bahar se access nahi ho sakte.
+**Exp:** Module pattern matlab private aur public members banane ka tarika. Jaise ghar mein private room aur public room hote hain - kuch cheezein sirf family ke liye, kuch sab ke liye.
 
 **Theory:**
 The Module Pattern is one of the most important design patterns in JavaScript. It uses IIFE (Immediately Invoked Function Expression) to create a private scope.
 
 ```javascript
-const MyModule = (function() {
-    // Private variables
-    let privateVar = 'I am private';
-    let privateCounter = 0;
-    
-    // Private methods
-    function privateMethod() {
-        console.log('This is private');
-    }
-    
-    // Public API
-    return {
-        publicMethod: function() {
-            console.log('Public method called');
-            privateMethod(); // Can access private
-        },
-        
-        getCounter: function() {
-            return privateCounter;
-        },
-        
-        increment: function() {
-            privateCounter++;
-        }
-    };
+const MyModule = (function () {
+  // Private variables
+  let privateVar = "I am private";
+  let privateCounter = 0;
+
+  // Private methods
+  function privateMethod() {
+    console.log("This is private");
+  }
+
+  // Public API
+  return {
+    publicMethod: function () {
+      console.log("Public method called");
+      privateMethod(); // Can access private
+    },
+
+    getCounter: function () {
+      return privateCounter;
+    },
+
+    increment: function () {
+      privateCounter++;
+    },
+  };
 })();
 
 // Usage
@@ -3465,26 +3481,26 @@ MyModule.publicMethod(); // Works
 The Revealing Module Pattern organizes code by defining all functions first and then revealing only what should be public.
 
 ```javascript
-const RevealingModule = (function() {
-    let privateVar = 'Hidden';
-    
-    function privateFunction() {
-        console.log(privateVar);
-    }
-    
-    function publicFunction1() {
-        privateFunction();
-    }
-    
-    function publicFunction2() {
-        console.log('Another public function');
-    }
-    
-    // Reveal public pointers to private functions
-    return {
-        method1: publicFunction1,
-        method2: publicFunction2
-    };
+const RevealingModule = (function () {
+  let privateVar = "Hidden";
+
+  function privateFunction() {
+    console.log(privateVar);
+  }
+
+  function publicFunction1() {
+    privateFunction();
+  }
+
+  function publicFunction2() {
+    console.log("Another public function");
+  }
+
+  // Reveal public pointers to private functions
+  return {
+    method1: publicFunction1,
+    method2: publicFunction2,
+  };
 })();
 
 // Usage
@@ -3507,28 +3523,28 @@ Factory functions provide a clean way to create objects with private variables a
 
 ```javascript
 function createPerson(name, age) {
-    // Private variable (closure)
-    let _id = Math.random().toString(36).substr(2, 9);
-    
-    return {
-        name: name,
-        age: age,
-        greet: function() {
-            console.log(`Hi, I'm ${this.name}`);
-        },
-        getId: function() {
-            return _id; // Access private variable
-        },
-        setAge: function(newAge) {
-            if (newAge > 0 && newAge < 150) {
-                this.age = newAge;
-            }
-        }
-    };
+  // Private variable (closure)
+  let _id = Math.random().toString(36).substr(2, 9);
+
+  return {
+    name: name,
+    age: age,
+    greet: function () {
+      console.log(`Hi, I'm ${this.name}`);
+    },
+    getId: function () {
+      return _id; // Access private variable
+    },
+    setAge: function (newAge) {
+      if (newAge > 0 && newAge < 150) {
+        this.age = newAge;
+      }
+    },
+  };
 }
 
-const person1 = createPerson('John', 25);
-const person2 = createPerson('Jane', 30);
+const person1 = createPerson("John", 25);
+const person2 = createPerson("Jane", 30);
 
 person1.greet(); // "Hi, I'm John"
 console.log(person1.getId()); // Returns private ID
@@ -3549,42 +3565,42 @@ The Observer Pattern is fundamental for event-driven programming and decoupling 
 
 ```javascript
 class EventEmitter {
-    constructor() {
-        this.events = {};
+  constructor() {
+    this.events = {};
+  }
+
+  // Subscribe to event
+  on(event, callback) {
+    if (!this.events[event]) {
+      this.events[event] = [];
     }
-    
-    // Subscribe to event
-    on(event, callback) {
-        if (!this.events[event]) {
-            this.events[event] = [];
-        }
-        this.events[event].push(callback);
+    this.events[event].push(callback);
+  }
+
+  // Unsubscribe from event
+  off(event, callback) {
+    if (this.events[event]) {
+      this.events[event] = this.events[event].filter((cb) => cb !== callback);
     }
-    
-    // Unsubscribe from event
-    off(event, callback) {
-        if (this.events[event]) {
-            this.events[event] = this.events[event].filter(cb => cb !== callback);
-        }
+  }
+
+  // Emit event
+  emit(event, data) {
+    if (this.events[event]) {
+      this.events[event].forEach((callback) => callback(data));
     }
-    
-    // Emit event
-    emit(event, data) {
-        if (this.events[event]) {
-            this.events[event].forEach(callback => callback(data));
-        }
-    }
+  }
 }
 
 // Usage
 const emitter = new EventEmitter();
 
-const handler1 = (data) => console.log('Handler 1:', data);
-const handler2 = (data) => console.log('Handler 2:', data);
+const handler1 = (data) => console.log("Handler 1:", data);
+const handler2 = (data) => console.log("Handler 2:", data);
 
-emitter.on('test', handler1);
-emitter.on('test', handler2);
-emitter.emit('test', 'Hello World!');
+emitter.on("test", handler1);
+emitter.on("test", handler2);
+emitter.emit("test", "Hello World!");
 ```
 
 [⬆️ Back to Top](#top)
@@ -3603,52 +3619,52 @@ Advanced debouncing and throttling provide more granular control over function e
 ```javascript
 // Advanced Debounce with immediate option
 function debounce(func, delay, immediate = false) {
-    let timeoutId;
-    
-    return function executedFunction(...args) {
-        const callNow = immediate && !timeoutId;
-        
-        const later = () => {
-            timeoutId = null;
-            if (!immediate) func.apply(this, args);
-        };
-        
-        clearTimeout(timeoutId);
-        timeoutId = setTimeout(later, delay);
-        
-        if (callNow) func.apply(this, args);
+  let timeoutId;
+
+  return function executedFunction(...args) {
+    const callNow = immediate && !timeoutId;
+
+    const later = () => {
+      timeoutId = null;
+      if (!immediate) func.apply(this, args);
     };
+
+    clearTimeout(timeoutId);
+    timeoutId = setTimeout(later, delay);
+
+    if (callNow) func.apply(this, args);
+  };
 }
 
 // Advanced Throttle with leading and trailing options
 function throttle(func, limit, options = {}) {
-    let timeout;
-    let previous = 0;
-    
-    return function(...args) {
-        const now = Date.now();
-        
-        if (!previous && options.leading === false) {
-            previous = now;
-        }
-        
-        const remaining = limit - (now - previous);
-        
-        if (remaining <= 0 || remaining > limit) {
-            if (timeout) {
-                clearTimeout(timeout);
-                timeout = null;
-            }
-            previous = now;
-            func.apply(this, args);
-        } else if (!timeout && options.trailing !== false) {
-            timeout = setTimeout(() => {
-                previous = options.leading === false ? 0 : Date.now();
-                timeout = null;
-                func.apply(this, args);
-            }, remaining);
-        }
-    };
+  let timeout;
+  let previous = 0;
+
+  return function (...args) {
+    const now = Date.now();
+
+    if (!previous && options.leading === false) {
+      previous = now;
+    }
+
+    const remaining = limit - (now - previous);
+
+    if (remaining <= 0 || remaining > limit) {
+      if (timeout) {
+        clearTimeout(timeout);
+        timeout = null;
+      }
+      previous = now;
+      func.apply(this, args);
+    } else if (!timeout && options.trailing !== false) {
+      timeout = setTimeout(() => {
+        previous = options.leading === false ? 0 : Date.now();
+        timeout = null;
+        func.apply(this, args);
+      }, remaining);
+    }
+  };
 }
 ```
 
@@ -3667,48 +3683,48 @@ Lazy loading improves performance by loading resources on demand rather than all
 
 ```javascript
 class LazyLoader {
-    constructor(options = {}) {
-        this.options = {
-            root: null,
-            rootMargin: '50px',
-            threshold: 0.1,
-            ...options
-        };
-        
-        this.imageObserver = new IntersectionObserver(
-            this.handleIntersection.bind(this),
-            this.options
-        );
-        
-        this.loadLazyImages();
-    }
-    
-    loadLazyImages() {
-        const lazyImages = document.querySelectorAll('img[data-src]');
-        lazyImages.forEach(img => this.imageObserver.observe(img));
-    }
-    
-    handleIntersection(entries) {
-        entries.forEach(entry => {
-            if (entry.isIntersecting) {
-                const img = entry.target;
-                this.loadImage(img);
-                this.imageObserver.unobserve(img);
-            }
-        });
-    }
-    
-    loadImage(img) {
-        const imageLoader = new Image();
-        
-        imageLoader.onload = () => {
-            img.src = img.dataset.src;
-            img.classList.remove('lazy');
-            img.classList.add('loaded');
-        };
-        
-        imageLoader.src = img.dataset.src;
-    }
+  constructor(options = {}) {
+    this.options = {
+      root: null,
+      rootMargin: "50px",
+      threshold: 0.1,
+      ...options,
+    };
+
+    this.imageObserver = new IntersectionObserver(
+      this.handleIntersection.bind(this),
+      this.options,
+    );
+
+    this.loadLazyImages();
+  }
+
+  loadLazyImages() {
+    const lazyImages = document.querySelectorAll("img[data-src]");
+    lazyImages.forEach((img) => this.imageObserver.observe(img));
+  }
+
+  handleIntersection(entries) {
+    entries.forEach((entry) => {
+      if (entry.isIntersecting) {
+        const img = entry.target;
+        this.loadImage(img);
+        this.imageObserver.unobserve(img);
+      }
+    });
+  }
+
+  loadImage(img) {
+    const imageLoader = new Image();
+
+    imageLoader.onload = () => {
+      img.src = img.dataset.src;
+      img.classList.remove("lazy");
+      img.classList.add("loaded");
+    };
+
+    imageLoader.src = img.dataset.src;
+  }
 }
 
 // Usage
@@ -3731,53 +3747,53 @@ DOM operations are expensive. Optimizing them is crucial for performance.
 ```javascript
 // Bad - Multiple reflows
 function badDOMUpdate() {
-    const element = document.getElementById('myDiv');
-    element.style.width = '200px';   // Reflow
-    element.style.height = '200px';  // Reflow  
-    element.style.background = 'red'; // Repaint
+  const element = document.getElementById("myDiv");
+  element.style.width = "200px"; // Reflow
+  element.style.height = "200px"; // Reflow
+  element.style.background = "red"; // Repaint
 }
 
 // Good - Batch DOM changes
 function goodDOMUpdate() {
-    const element = document.getElementById('myDiv');
-    element.style.cssText = 'width: 200px; height: 200px; background: red;';
+  const element = document.getElementById("myDiv");
+  element.style.cssText = "width: 200px; height: 200px; background: red;";
 }
 
 // Document Fragment for multiple additions
 function efficientDOMAddition(items) {
-    const fragment = document.createDocumentFragment();
-    
-    items.forEach(item => {
-        const li = document.createElement('li');
-        li.textContent = item;
-        fragment.appendChild(li);
-    });
-    
-    document.getElementById('list').appendChild(fragment);
+  const fragment = document.createDocumentFragment();
+
+  items.forEach((item) => {
+    const li = document.createElement("li");
+    li.textContent = item;
+    fragment.appendChild(li);
+  });
+
+  document.getElementById("list").appendChild(fragment);
 }
 
 // Virtual Scrolling for large lists
 function createVirtualList(container, items, itemHeight, visibleCount) {
-    let startIndex = 0;
-    let endIndex = Math.min(visibleCount, items.length);
-    
-    const renderVisible = () => {
-        container.innerHTML = '';
-        
-        for (let i = startIndex; i < endIndex; i++) {
-            const item = document.createElement('div');
-            item.style.top = `${i * itemHeight}px`;
-            item.textContent = items[i];
-            container.appendChild(item);
-        }
-    };
-    
-    container.addEventListener('scroll', () => {
-        const scrollTop = container.scrollTop;
-        startIndex = Math.floor(scrollTop / itemHeight);
-        endIndex = Math.min(startIndex + visibleCount, items.length);
-        renderVisible();
-    });
+  let startIndex = 0;
+  let endIndex = Math.min(visibleCount, items.length);
+
+  const renderVisible = () => {
+    container.innerHTML = "";
+
+    for (let i = startIndex; i < endIndex; i++) {
+      const item = document.createElement("div");
+      item.style.top = `${i * itemHeight}px`;
+      item.textContent = items[i];
+      container.appendChild(item);
+    }
+  };
+
+  container.addEventListener("scroll", () => {
+    const scrollTop = container.scrollTop;
+    startIndex = Math.floor(scrollTop / itemHeight);
+    endIndex = Math.min(startIndex + visibleCount, items.length);
+    renderVisible();
+  });
 }
 ```
 
@@ -3796,73 +3812,73 @@ Memory leaks occur when objects can't be garbage collected due to unwanted refer
 
 ```javascript
 class ComponentWithCleanup {
-    constructor(element) {
-        this.element = element;
-        this.timers = [];
-        this.listeners = [];
-        this.abortController = new AbortController();
-        
-        this.init();
+  constructor(element) {
+    this.element = element;
+    this.timers = [];
+    this.listeners = [];
+    this.abortController = new AbortController();
+
+    this.init();
+  }
+
+  init() {
+    // Bind methods to preserve context
+    this.handleClick = this.handleClick.bind(this);
+    this.handleResize = this.handleResize.bind(this);
+
+    // Track event listeners for cleanup
+    this.addEventListener(this.element, "click", this.handleClick);
+    this.addEventListener(window, "resize", this.handleResize);
+
+    // Track timers for cleanup
+    this.setTimer(() => console.log("Timer executed"), 1000);
+
+    // Use AbortController for fetch requests
+    this.fetchData();
+  }
+
+  addEventListener(element, event, handler) {
+    element.addEventListener(event, handler);
+    this.listeners.push({ element, event, handler });
+  }
+
+  setTimer(callback, delay) {
+    const timerId = setTimeout(callback, delay);
+    this.timers.push(timerId);
+    return timerId;
+  }
+
+  async fetchData() {
+    try {
+      const response = await fetch("/api/data", {
+        signal: this.abortController.signal,
+      });
+      // Handle response
+    } catch (error) {
+      if (error.name !== "AbortError") {
+        console.error("Fetch error:", error);
+      }
     }
-    
-    init() {
-        // Bind methods to preserve context
-        this.handleClick = this.handleClick.bind(this);
-        this.handleResize = this.handleResize.bind(this);
-        
-        // Track event listeners for cleanup
-        this.addEventListener(this.element, 'click', this.handleClick);
-        this.addEventListener(window, 'resize', this.handleResize);
-        
-        // Track timers for cleanup
-        this.setTimer(() => console.log('Timer executed'), 1000);
-        
-        // Use AbortController for fetch requests
-        this.fetchData();
-    }
-    
-    addEventListener(element, event, handler) {
-        element.addEventListener(event, handler);
-        this.listeners.push({ element, event, handler });
-    }
-    
-    setTimer(callback, delay) {
-        const timerId = setTimeout(callback, delay);
-        this.timers.push(timerId);
-        return timerId;
-    }
-    
-    async fetchData() {
-        try {
-            const response = await fetch('/api/data', {
-                signal: this.abortController.signal
-            });
-            // Handle response
-        } catch (error) {
-            if (error.name !== 'AbortError') {
-                console.error('Fetch error:', error);
-            }
-        }
-    }
-    
-    // CRUCIAL: Cleanup method
-    destroy() {
-        // Clear all timers
-        this.timers.forEach(id => clearTimeout(id));
-        this.timers = [];
-        
-        // Remove all event listeners
-        this.listeners.forEach(({ element, event, handler }) => {
-            element.removeEventListener(event, handler);
-        });
-        this.listeners = [];
-        
-        // Abort fetch requests
-        this.abortController.abort();
-        
-        // Clear references
-        this.element = null;
-    }
+  }
+
+  // CRUCIAL: Cleanup method
+  destroy() {
+    // Clear all timers
+    this.timers.forEach((id) => clearTimeout(id));
+    this.timers = [];
+
+    // Remove all event listeners
+    this.listeners.forEach(({ element, event, handler }) => {
+      element.removeEventListener(event, handler);
+    });
+    this.listeners = [];
+
+    // Abort fetch requests
+    this.abortController.abort();
+
+    // Clear references
+    this.element = null;
+  }
 }
 ```
 
@@ -3872,9 +3888,10 @@ class ComponentWithCleanup {
 
 ## 48. Pure vs Impure Functions
 
-**Definition:** Pure functions always return the same output for the same input and have no side effects. Impure functions may produce different outputs or cause side effects.
+**Definition:** Two types of functions based on predictability and side effects.
 
-**Exp:** Pure functions predictable hote hain - same input se same output, koi side effects nahi. Impure functions unpredictable ho sakte hain ya side effects kar sakte hain.
+**Pure Function Exp:** Same input = same output. Koi side effects nahi. Jaise calculator - 2+2 hamesha 4 dega.
+**Impure Function Exp:** Different output de sakta hai ya kuch change kar sakta hai outside. Jaise random number generator.
 
 **Theory:**
 Understanding pure vs impure functions is crucial for functional programming and debugging.
@@ -3882,14 +3899,14 @@ Understanding pure vs impure functions is crucial for functional programming and
 ```javascript
 // Pure Functions
 const pureFunctions = {
-    add: (a, b) => a + b,
-    multiply: (x, y) => x * y,
-    
-    // Doesn't modify original array
-    addToArray: (arr, item) => [...arr, item],
-    
-    // Same input always gives same output
-    calculateArea: (radius) => Math.PI * radius * radius
+  add: (a, b) => a + b,
+  multiply: (x, y) => x * y,
+
+  // Doesn't modify original array
+  addToArray: (arr, item) => [...arr, item],
+
+  // Same input always gives same output
+  calculateArea: (radius) => Math.PI * radius * radius,
 };
 
 // Impure Functions
@@ -3897,23 +3914,23 @@ let counter = 0;
 const config = { multiplier: 2 };
 
 const impureFunctions = {
-    // Modifies external variable
-    increment: () => ++counter,
-    
-    // Depends on external state
-    getMultipliedValue: (x) => x * config.multiplier,
-    
-    // Modifies original array (side effect)
-    pushToArray: (arr, item) => {
-        arr.push(item);
-        return arr;
-    },
-    
-    // Has side effect (console.log)
-    logAndReturn: (value) => {
-        console.log('Processing:', value);
-        return value * 2;
-    }
+  // Modifies external variable
+  increment: () => ++counter,
+
+  // Depends on external state
+  getMultipliedValue: (x) => x * config.multiplier,
+
+  // Modifies original array (side effect)
+  pushToArray: (arr, item) => {
+    arr.push(item);
+    return arr;
+  },
+
+  // Has side effect (console.log)
+  logAndReturn: (value) => {
+    console.log("Processing:", value);
+    return value * 2;
+  },
 };
 
 // Pure function benefits:
@@ -3944,8 +3961,14 @@ Functional composition promotes code reusability and readability by breaking com
 
 ```javascript
 // Basic function composition
-const compose = (...fns) => (value) => fns.reduceRight((acc, fn) => fn(acc), value);
-const pipe = (...fns) => (value) => fns.reduce((acc, fn) => fn(acc), value);
+const compose =
+  (...fns) =>
+  (value) =>
+    fns.reduceRight((acc, fn) => fn(acc), value);
+const pipe =
+  (...fns) =>
+  (value) =>
+    fns.reduce((acc, fn) => fn(acc), value);
 
 // Helper functions
 const addTax = (price) => price * 1.1;
@@ -3955,28 +3978,28 @@ const round = (price) => Math.round(price * 100) / 100;
 
 // Using pipe (left to right - more readable)
 const calculateFinalPrice = pipe(
-    applyDiscount,    // First: Apply 10% discount
-    addShipping,      // Then: Add $15 shipping
-    addTax,          // Then: Add 10% tax
-    round            // Finally: Round to 2 decimals
+  applyDiscount, // First: Apply 10% discount
+  addShipping, // Then: Add $15 shipping
+  addTax, // Then: Add 10% tax
+  round, // Finally: Round to 2 decimals
 );
 
 console.log(calculateFinalPrice(100)); // 111.5
 
 // Data processing pipeline
 const users = [
-    { name: 'John', age: 25, salary: 50000, active: true },
-    { name: 'Jane', age: 30, salary: 75000, active: false },
-    { name: 'Bob', age: 35, salary: 60000, active: true }
+  { name: "John", age: 25, salary: 50000, active: true },
+  { name: "Jane", age: 30, salary: 75000, active: false },
+  { name: "Bob", age: 35, salary: 60000, active: true },
 ];
 
 const result = users
-    .filter(user => user.active)
-    .filter(user => user.age >= 25)
-    .map(user => ({ ...user, bonus: user.salary * 0.1 }))
-    .reduce((total, user) => total + user.salary, 0);
+  .filter((user) => user.active)
+  .filter((user) => user.age >= 25)
+  .map((user) => ({ ...user, bonus: user.salary * 0.1 }))
+  .reduce((total, user) => total + user.salary, 0);
 
-console.log('Total salary:', result);
+console.log("Total salary:", result);
 ```
 
 [⬆️ Back to Top](#top)
@@ -3995,105 +4018,105 @@ Separating concerns makes code more maintainable, testable, and scalable.
 ```javascript
 // Model - Data and Business Logic
 class TodoModel {
-    constructor() {
-        this.todos = [];
-        this.nextId = 1;
+  constructor() {
+    this.todos = [];
+    this.nextId = 1;
+  }
+
+  addTodo(text) {
+    if (!text.trim()) throw new Error("Todo text cannot be empty");
+
+    const todo = {
+      id: this.nextId++,
+      text: text.trim(),
+      completed: false,
+    };
+
+    this.todos.push(todo);
+    return todo;
+  }
+
+  deleteTodo(id) {
+    const index = this.todos.findIndex((todo) => todo.id === id);
+    if (index > -1) {
+      return this.todos.splice(index, 1)[0];
     }
-    
-    addTodo(text) {
-        if (!text.trim()) throw new Error('Todo text cannot be empty');
-        
-        const todo = {
-            id: this.nextId++,
-            text: text.trim(),
-            completed: false
-        };
-        
-        this.todos.push(todo);
-        return todo;
-    }
-    
-    deleteTodo(id) {
-        const index = this.todos.findIndex(todo => todo.id === id);
-        if (index > -1) {
-            return this.todos.splice(index, 1)[0];
-        }
-        throw new Error('Todo not found');
-    }
-    
-    getTodos() {
-        return [...this.todos];
-    }
+    throw new Error("Todo not found");
+  }
+
+  getTodos() {
+    return [...this.todos];
+  }
 }
 
 // View - DOM Manipulation Only
 class TodoView {
-    constructor() {
-        this.todoList = document.getElementById('todoList');
-        this.todoInput = document.getElementById('todoInput');
-        this.setupEventListeners();
-    }
-    
-    setupEventListeners() {
-        document.getElementById('addBtn').addEventListener('click', () => {
-            if (this.onAddTodo) {
-                this.onAddTodo(this.todoInput.value);
-            }
-        });
-    }
-    
-    renderTodos(todos) {
-        this.todoList.innerHTML = '';
-        
-        todos.forEach(todo => {
-            const li = document.createElement('li');
-            li.innerHTML = `
+  constructor() {
+    this.todoList = document.getElementById("todoList");
+    this.todoInput = document.getElementById("todoInput");
+    this.setupEventListeners();
+  }
+
+  setupEventListeners() {
+    document.getElementById("addBtn").addEventListener("click", () => {
+      if (this.onAddTodo) {
+        this.onAddTodo(this.todoInput.value);
+      }
+    });
+  }
+
+  renderTodos(todos) {
+    this.todoList.innerHTML = "";
+
+    todos.forEach((todo) => {
+      const li = document.createElement("li");
+      li.innerHTML = `
                 <span>${todo.text}</span>
                 <button onclick="todoController.deleteTodo(${todo.id})">Delete</button>
             `;
-            this.todoList.appendChild(li);
-        });
-    }
-    
-    clearInput() {
-        this.todoInput.value = '';
-    }
+      this.todoList.appendChild(li);
+    });
+  }
+
+  clearInput() {
+    this.todoInput.value = "";
+  }
 }
 
 // Controller - Connects Model and View
 class TodoController {
-    constructor() {
-        this.model = new TodoModel();
-        this.view = new TodoView();
-        this.bindEvents();
+  constructor() {
+    this.model = new TodoModel();
+    this.view = new TodoView();
+    this.bindEvents();
+  }
+
+  bindEvents() {
+    this.view.onAddTodo = (text) => this.addTodo(text);
+  }
+
+  addTodo(text) {
+    try {
+      this.model.addTodo(text);
+      this.view.clearInput();
+      this.updateView();
+    } catch (error) {
+      alert(error.message);
     }
-    
-    bindEvents() {
-        this.view.onAddTodo = (text) => this.addTodo(text);
+  }
+
+  deleteTodo(id) {
+    try {
+      this.model.deleteTodo(id);
+      this.updateView();
+    } catch (error) {
+      alert(error.message);
     }
-    
-    addTodo(text) {
-        try {
-            this.model.addTodo(text);
-            this.view.clearInput();
-            this.updateView();
-        } catch (error) {
-            alert(error.message);
-        }
-    }
-    
-    deleteTodo(id) {
-        try {
-            this.model.deleteTodo(id);
-            this.updateView();
-        } catch (error) {
-            alert(error.message);
-        }
-    }
-    
-    updateView() {
-        this.view.renderTodos(this.model.getTodos());
-    }
+  }
+
+  updateView() {
+    this.view.renderTodos(this.model.getTodos());
+  }
 }
 ```
 
@@ -4112,80 +4135,80 @@ Implementing utilities from scratch helps understand JavaScript fundamentals and
 
 ```javascript
 // Custom Array Methods
-Array.prototype.myMap = function(callback, thisArg) {
-    const result = [];
-    for (let i = 0; i < this.length; i++) {
-        if (i in this) {
-            result[i] = callback.call(thisArg, this[i], i, this);
-        }
+Array.prototype.myMap = function (callback, thisArg) {
+  const result = [];
+  for (let i = 0; i < this.length; i++) {
+    if (i in this) {
+      result[i] = callback.call(thisArg, this[i], i, this);
     }
-    return result;
+  }
+  return result;
 };
 
-Array.prototype.myFilter = function(callback, thisArg) {
-    const result = [];
-    for (let i = 0; i < this.length; i++) {
-        if (i in this && callback.call(thisArg, this[i], i, this)) {
-            result.push(this[i]);
-        }
+Array.prototype.myFilter = function (callback, thisArg) {
+  const result = [];
+  for (let i = 0; i < this.length; i++) {
+    if (i in this && callback.call(thisArg, this[i], i, this)) {
+      result.push(this[i]);
     }
-    return result;
+  }
+  return result;
 };
 
 // Deep Clone Implementation
 function deepClone(obj, visited = new WeakMap()) {
-    if (obj === null || typeof obj !== 'object') return obj;
-    
-    if (visited.has(obj)) return visited.get(obj);
-    
-    if (obj instanceof Date) return new Date(obj.getTime());
-    if (obj instanceof RegExp) return new RegExp(obj.source, obj.flags);
-    
-    if (Array.isArray(obj)) {
-        const clonedArray = [];
-        visited.set(obj, clonedArray);
-        obj.forEach((item, index) => {
-            clonedArray[index] = deepClone(item, visited);
-        });
-        return clonedArray;
+  if (obj === null || typeof obj !== "object") return obj;
+
+  if (visited.has(obj)) return visited.get(obj);
+
+  if (obj instanceof Date) return new Date(obj.getTime());
+  if (obj instanceof RegExp) return new RegExp(obj.source, obj.flags);
+
+  if (Array.isArray(obj)) {
+    const clonedArray = [];
+    visited.set(obj, clonedArray);
+    obj.forEach((item, index) => {
+      clonedArray[index] = deepClone(item, visited);
+    });
+    return clonedArray;
+  }
+
+  const clonedObj = {};
+  visited.set(obj, clonedObj);
+
+  for (let key in obj) {
+    if (obj.hasOwnProperty(key)) {
+      clonedObj[key] = deepClone(obj[key], visited);
     }
-    
-    const clonedObj = {};
-    visited.set(obj, clonedObj);
-    
-    for (let key in obj) {
-        if (obj.hasOwnProperty(key)) {
-            clonedObj[key] = deepClone(obj[key], visited);
-        }
-    }
-    
-    return clonedObj;
+  }
+
+  return clonedObj;
 }
 
 // Memoization utility
 function memoize(fn) {
-    const cache = new Map();
-    
-    return function(...args) {
-        const key = JSON.stringify(args);
-        
-        if (cache.has(key)) {
-            return cache.get(key);
-        }
-        
-        const result = fn.apply(this, args);
-        cache.set(key, result);
-        return result;
-    };
+  const cache = new Map();
+
+  return function (...args) {
+    const key = JSON.stringify(args);
+
+    if (cache.has(key)) {
+      return cache.get(key);
+    }
+
+    const result = fn.apply(this, args);
+    cache.set(key, result);
+    return result;
+  };
 }
 
 // Usage examples
 const numbers = [1, 2, 3, 4];
-console.log(numbers.myMap(x => x * 2)); // [2, 4, 6, 8]
+console.log(numbers.myMap((x) => x * 2)); // [2, 4, 6, 8]
 
 const expensiveFunction = memoize((n) => {
-    console.log('Computing...');
-    return n * n;
+  console.log("Computing...");
+  return n * n;
 });
 
 console.log(expensiveFunction(5)); // Computing... 25
@@ -4207,77 +4230,77 @@ The JavaScript engine consists of a call stack, heap memory, and event loop that
 
 ```javascript
 // Event Loop Demonstration
-console.log('1. Start');
+console.log("1. Start");
 
 // Synchronous code
-console.log('2. Synchronous');
+console.log("2. Synchronous");
 
 // Macrotask (Timer API)
 setTimeout(() => {
-    console.log('5. Macrotask (setTimeout)');
+  console.log("5. Macrotask (setTimeout)");
 }, 0);
 
 // Microtask (Promise)
 Promise.resolve().then(() => {
-    console.log('4. Microtask (Promise)');
+  console.log("4. Microtask (Promise)");
 });
 
-console.log('3. End');
+console.log("3. End");
 
 // Output: 1, 2, 3, 4, 5
 // Explanation: Call stack first, then microtasks, then macrotasks
 
 // Call Stack visualization
 function callStackDemo() {
-    console.log('Call Stack Demo:');
-    
-    function first() {
-        console.log('First function');
-        second();
-        console.log('First function end');
-    }
-    
-    function second() {
-        console.log('Second function');
-        third();
-        console.log('Second function end');
-    }
-    
-    function third() {
-        console.log('Third function');
-    }
-    
-    first();
-    
-    // Stack trace: first() -> second() -> third()
-    // LIFO: third() pops first, then second(), then first()
+  console.log("Call Stack Demo:");
+
+  function first() {
+    console.log("First function");
+    second();
+    console.log("First function end");
+  }
+
+  function second() {
+    console.log("Second function");
+    third();
+    console.log("Second function end");
+  }
+
+  function third() {
+    console.log("Third function");
+  }
+
+  first();
+
+  // Stack trace: first() -> second() -> third()
+  // LIFO: third() pops first, then second(), then first()
 }
 
 // Microtask vs Macrotask priority
 function queuePriorityDemo() {
-    console.log('=== Queue Priority Demo ===');
-    
-    // Macrotasks (Task Queue)
-    setTimeout(() => console.log('Macrotask 1'), 0);
-    setTimeout(() => console.log('Macrotask 2'), 0);
-    
-    // Microtasks (Microtask Queue) - Higher priority
-    Promise.resolve().then(() => console.log('Microtask 1'));
-    Promise.resolve().then(() => {
-        console.log('Microtask 2');
-        // Nested microtask - still higher priority than macrotasks
-        Promise.resolve().then(() => console.log('Nested Microtask'));
-    });
-    
-    console.log('Synchronous');
-    
-    // Output:
-    // Synchronous
-    // Microtask 1
-    // Microtask 2
-    // Nested Microtask
-    // Macrotask 1
-    // Macrotask 2
+  console.log("=== Queue Priority Demo ===");
+
+  // Macrotasks (Task Queue)
+  setTimeout(() => console.log("Macrotask 1"), 0);
+  setTimeout(() => console.log("Macrotask 2"), 0);
+
+  // Microtasks (Microtask Queue) - Higher priority
+  Promise.resolve().then(() => console.log("Microtask 1"));
+  Promise.resolve().then(() => {
+    console.log("Microtask 2");
+    // Nested microtask - still higher priority than macrotasks
+    Promise.resolve().then(() => console.log("Nested Microtask"));
+  });
+
+  console.log("Synchronous");
+
+  // Output:
+  // Synchronous
+  // Microtask 1
+  // Microtask 2
+  // Nested Microtask
+  // Macrotask 1
+  // Macrotask 2
 }
 ```
 
@@ -4297,76 +4320,76 @@ Web APIs run in separate threads but communicate with JavaScript through the eve
 ```javascript
 // Web APIs Demo
 class WebAPIsDemo {
-    constructor() {
-        this.demonstrateWebAPIs();
+  constructor() {
+    this.demonstrateWebAPIs();
+  }
+
+  demonstrateWebAPIs() {
+    console.log("=== Web APIs Demonstration ===");
+
+    // DOM API
+    if (typeof document !== "undefined") {
+      document.addEventListener("click", (event) => {
+        console.log("DOM Event handled by Web API");
+        console.log("Clicked at:", event.clientX, event.clientY);
+      });
     }
-    
-    demonstrateWebAPIs() {
-        console.log('=== Web APIs Demonstration ===');
-        
-        // DOM API
-        if (typeof document !== 'undefined') {
-            document.addEventListener('click', (event) => {
-                console.log('DOM Event handled by Web API');
-                console.log('Clicked at:', event.clientX, event.clientY);
-            });
-        }
-        
-        // Timer API (handled by browser, not JavaScript engine)
-        const timerId = setTimeout(() => {
-            console.log('Timer API callback executed');
-        }, 1000);
-        
-        // Network API (Fetch)
-        if (typeof fetch !== 'undefined') {
-            fetch('https://jsonplaceholder.typicode.com/posts/1')
-                .then(response => response.json())
-                .then(data => {
-                    console.log('Fetch API result:', data.title);
-                })
-                .catch(error => {
-                    console.log('Fetch API error:', error.message);
-                });
-        }
-        
-        // Geolocation API
-        if (navigator && navigator.geolocation) {
-            navigator.geolocation.getCurrentPosition(
-                position => {
-                    console.log('Geolocation API success:', {
-                        latitude: position.coords.latitude,
-                        longitude: position.coords.longitude
-                    });
-                },
-                error => {
-                    console.log('Geolocation API error:', error.message);
-                }
-            );
-        }
-        
-        // Local Storage API
-        if (typeof localStorage !== 'undefined') {
-            localStorage.setItem('webapi-demo', 'test-value');
-            console.log('LocalStorage API:', localStorage.getItem('webapi-demo'));
-        }
+
+    // Timer API (handled by browser, not JavaScript engine)
+    const timerId = setTimeout(() => {
+      console.log("Timer API callback executed");
+    }, 1000);
+
+    // Network API (Fetch)
+    if (typeof fetch !== "undefined") {
+      fetch("https://jsonplaceholder.typicode.com/posts/1")
+        .then((response) => response.json())
+        .then((data) => {
+          console.log("Fetch API result:", data.title);
+        })
+        .catch((error) => {
+          console.log("Fetch API error:", error.message);
+        });
     }
-    
-    // Demonstrate how Web APIs don't block the main thread
-    demonstrateNonBlocking() {
-        console.log('Before long-running Web API call');
-        
-        // This doesn't block JavaScript execution
-        setTimeout(() => {
-            console.log('Long-running timer completed');
-        }, 3000);
-        
-        console.log('After Web API call (not blocked)');
-        
-        // JavaScript continues executing while Web API runs in background
-        for (let i = 0; i < 3; i++) {
-            console.log(`Loop iteration ${i}`);
-        }
+
+    // Geolocation API
+    if (navigator && navigator.geolocation) {
+      navigator.geolocation.getCurrentPosition(
+        (position) => {
+          console.log("Geolocation API success:", {
+            latitude: position.coords.latitude,
+            longitude: position.coords.longitude,
+          });
+        },
+        (error) => {
+          console.log("Geolocation API error:", error.message);
+        },
+      );
     }
+
+    // Local Storage API
+    if (typeof localStorage !== "undefined") {
+      localStorage.setItem("webapi-demo", "test-value");
+      console.log("LocalStorage API:", localStorage.getItem("webapi-demo"));
+    }
+  }
+
+  // Demonstrate how Web APIs don't block the main thread
+  demonstrateNonBlocking() {
+    console.log("Before long-running Web API call");
+
+    // This doesn't block JavaScript execution
+    setTimeout(() => {
+      console.log("Long-running timer completed");
+    }, 3000);
+
+    console.log("After Web API call (not blocked)");
+
+    // JavaScript continues executing while Web API runs in background
+    for (let i = 0; i < 3; i++) {
+      console.log(`Loop iteration ${i}`);
+    }
+  }
 }
 
 // Browser Threading Model
@@ -4421,6 +4444,7 @@ Web APIs run on separate threads and communicate via:
 15. How do you handle errors in JavaScript?
 
 ---
+
 [⬆️ Back to Top](#top)
 
 **Good luck with your interviews! 🚀**
