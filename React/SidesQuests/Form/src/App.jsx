@@ -18,7 +18,6 @@ function App() {
     const newUsers = userdata.filter((_, i) => {
       return i !== index;
     });
-
     setUserdata(newUsers);
   };
 
