@@ -22,3 +22,4 @@ are like function which also remembers the data
 
 talwind integration
 
+yup and formik
