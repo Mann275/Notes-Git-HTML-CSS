@@ -20,7 +20,7 @@ function App() {
       pass += str.charAt(char);
     }
     setPassword(pass);
-  }, [length, numAllowed, charAllowed, setPassword]);
+  }, [length]);
 
   const copyPasswordToClipboard = useCallback(() => {
     passwordRef.current?.select();
@@ -30,7 +30,7 @@ function App() {
 
   useEffect(() => {
     passwordGenerator();
-  }, [length, numAllowed, charAllowed, passwordGenerator]);
+  }, [length, numAllowed, charAllowed]);
 
   return (
     <>
