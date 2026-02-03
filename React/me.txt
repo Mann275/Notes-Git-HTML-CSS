@@ -34,3 +34,10 @@ react-router-dom
 (createBrowserRouter,
   createRoutesFromElements,
   Route,)
+
+
+it is used because of prop drilling like geting any prop/data from grand parent to child directly
+  context api -
+  1- create context 
+2-context provider 
+3- Usecontext 
