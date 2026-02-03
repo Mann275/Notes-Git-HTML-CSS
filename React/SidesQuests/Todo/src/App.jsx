@@ -1,4 +1,4 @@
-import { use, useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import { TodoForm, TodoItem } from "./components";
 import "./App.css";
 import { TodoProvider } from "./contexts";
@@ -34,24 +34,74 @@ function App() {
     localStorage.setItem("todos", JSON.stringify(todos));
   }, [todos]);
 
+  const completedCount = todos.filter((todo) => todo.completed).length;
+  const totalCount = todos.length;
+
   return (
     <TodoProvider
       value={{ todos, addTodo, updateTodo, deleteTodo, toggleComplete }}
     >
-      <div className="bg-[#172842] min-h-screen py-8">
-        <div className="w-full max-w-2xl mx-auto shadow-md rounded-lg px-4 py-3 text-white">
-          <h1 className="text-2xl font-bold text-center mb-8 mt-2">
-            Manage Your Todos
-          </h1>
-          <div className="mb-4">
-            <TodoForm />
-          </div>
-          <div className="flex flex-wrap gap-y-3">
-            {todos.map((todo) => (
-              <div key={todo.id} className="w-full">
-                <TodoItem todo={todo} />
+      <div className="min-h-screen bg-gray-900 py-8 px-4">
+        <div className="w-full max-w-4xl mx-auto">
+          {/* Header Section */}
+          <div className="text-center mb-8">
+            <h1 className="text-4xl font-bold text-white mb-4 tracking-tight">
+              📋 Todo Manager
+            </h1>
+            <p className="text-white/80 text-lg">
+              Stay organized and productive with style
+            </p>
+            {totalCount > 0 && (
+              <div className="mt-4 inline-flex items-center gap-4 bg-gray-800 border border-gray-700 rounded-lg px-6 py-3 text-gray-300">
+                <div className="flex items-center gap-2">
+                  <div className="w-3 h-3 bg-green-500 rounded-full"></div>
+                  <span>Completed: {completedCount}</span>
+                </div>
+                <div className="flex items-center gap-2">
+                  <div className="w-3 h-3 bg-orange-500 rounded-full"></div>
+                  <span>Remaining: {totalCount - completedCount}</span>
+                </div>
+                <div className="flex items-center gap-2">
+                  <div className="w-3 h-3 bg-blue-500 rounded-full"></div>
+                  <span>Total: {totalCount}</span>
+                </div>
               </div>
-            ))}
+            )}
+          </div>
+
+          {/* Main Container */}
+          <div className="bg-gray-800 border border-gray-700 rounded-xl shadow-2xl p-8">
+            <div className="mb-8">
+              <TodoForm />
+            </div>
+
+            <div className="space-y-4">
+              {todos.length === 0 ? (
+                <div className="text-center py-12">
+                  <div className="text-6xl mb-4">📝</div>
+                  <h3 className="text-white text-xl font-semibold mb-2">
+                    No todos yet!
+                  </h3>
+                  <p className="text-white/70">
+                    Add your first todo above to get started
+                  </p>
+                </div>
+              ) : (
+                todos.map((todo) => (
+                  <div
+                    key={todo.id}
+                    className="w-full transform transition-all duration-300 hover:scale-[1.02]"
+                  >
+                    <TodoItem todo={todo} />
+                  </div>
+                ))
+              )}
+            </div>
+          </div>
+
+          {/* Footer */}
+          <div className="text-center mt-8 text-gray-500">
+            <p>Made with ❤️ for productivity</p>
           </div>
         </div>
       </div>

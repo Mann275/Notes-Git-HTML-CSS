@@ -5,55 +5,184 @@ function TodoItem({ todo }) {
   const [isTodoEditable, setIsTodoEditable] = useState(false);
   const [todoMsg, setTodoMsg] = useState(todo.todo);
   const { updateTodo, deleteTodo, toggleComplete } = useTodo();
+
   const editTodo = () => {
-    updateTodo(todo.id, { ...todo, todo: todoMsg });
+    if (todoMsg.trim()) {
+      updateTodo(todo.id, { ...todo, todo: todoMsg.trim() });
+    } else {
+      setTodoMsg(todo.todo);
+    }
     setIsTodoEditable(false);
   };
+
   const toggleCompleted = () => {
     toggleComplete(todo.id);
   };
+
   return (
     <div
-      className={`flex border border-black/10 rounded-lg px-3 py-1.5 gap-x-3 shadow-sm shadow-white/50 duration-300  text-black ${
-        todo.completed ? "bg-[#c6e9a7]" : "bg-[#ccbed7]"
-      }`}
+      className={`group relative overflow-hidden transition-all duration-500 transform ${
+        todo.completed
+          ? "bg-gradient-to-r from-green-400/20 to-emerald-500/20 border-green-400/30"
+          : "bg-gradient-to-r from-white/15 to-white/5 border-white/20"
+      } backdrop-blur-sm border-2 rounded-2xl p-6 shadow-xl hover:shadow-2xl hover:scale-[1.01]`}
     >
-      <input
-        type="checkbox"
-        className="cursor-pointer"
-        checked={todo.completed}
-        onChange={toggleCompleted}
-      />
-      <input
-        type="text"
-        className={`border outline-none w-full bg-transparent rounded-lg ${
-          isTodoEditable ? "border-black/10 px-2" : "border-transparent"
-        } ${todo.completed ? "line-through" : ""}`}
-        value={todoMsg}
-        onChange={(e) => setTodoMsg(e.target.value)}
-        readOnly={!isTodoEditable}
-      />
-      {/* Edit, Save Button */}
-      <button
-        className="inline-flex w-8 h-8 rounded-lg text-sm border border-black/10 justify-center items-center bg-gray-50 hover:bg-gray-100 shrink-0 disabled:opacity-50"
-        onClick={() => {
-          if (todo.completed) return;
+      {/* Animated background gradient */}
+      <div
+        className={`absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-300 ${
+          todo.completed
+            ? "bg-gradient-to-r from-green-400/10 to-emerald-500/10"
+            : "bg-gradient-to-r from-purple-500/10 to-blue-500/10"
+        }`}
+      ></div>
 
-          if (isTodoEditable) {
-            editTodo();
-          } else setIsTodoEditable((prev) => !prev);
-        }}
-        disabled={todo.completed}
-      >
-        {isTodoEditable ? "📁" : "✏️"}
-      </button>
-      {/* Delete Todo Button */}
-      <button
-        className="inline-flex w-8 h-8 rounded-lg text-sm border border-black/10 justify-center items-center bg-gray-50 hover:bg-gray-100 shrink-0"
-        onClick={() => deleteTodo(todo.id)}
-      >
-        ❌
-      </button>
+      <div className="relative flex items-center gap-4">
+        {/* Custom Checkbox */}
+        <div className="relative">
+          <input
+            type="checkbox"
+            className="sr-only"
+            checked={todo.completed}
+            onChange={toggleCompleted}
+            id={`todo-${todo.id}`}
+          />
+          <label
+            htmlFor={`todo-${todo.id}`}
+            className={`relative flex items-center justify-center w-7 h-7 rounded-full border-2 cursor-pointer transition-all duration-300 ${
+              todo.completed
+                ? "bg-green-600 border-green-600 shadow-lg shadow-green-600/25"
+                : "border-gray-500 hover:border-gray-400 bg-gray-600"
+            }`}
+          >
+            {todo.completed && (
+              <svg
+                className="w-4 h-4 text-white animate-pulse"
+                fill="none"
+                stroke="currentColor"
+                viewBox="0 0 24 24"
+              >
+                <path
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  strokeWidth={3}
+                  d="M5 13l4 4L19 7"
+                />
+              </svg>
+            )}
+          </label>
+        </div>
+
+        {/* Todo Text */}
+        <div className="flex-1">
+          <input
+            type="text"
+            className={`w-full bg-transparent outline-none text-lg font-medium transition-all duration-300 ${
+              isTodoEditable
+                ? "text-white bg-white/10 px-3 py-2 rounded-lg border-2 border-white/30 focus:border-white/60"
+                : "text-white border-transparent"
+            } ${
+              todo.completed ? "line-through text-white/60" : ""
+            } placeholder-white/50`}
+            value={todoMsg}
+            onChange={(e) => setTodoMsg(e.target.value)}
+            readOnly={!isTodoEditable}
+            onKeyDown={(e) => {
+              if (e.key === "Enter" && isTodoEditable) {
+                editTodo();
+              }
+              if (e.key === "Escape" && isTodoEditable) {
+                setTodoMsg(todo.todo);
+                setIsTodoEditable(false);
+              }
+            }}
+            placeholder="Todo text..."
+          />
+        </div>
+
+        {/* Action Buttons */}
+        <div className="flex gap-2">
+          {/* Edit/Save Button */}
+          <button
+            className={`group/btn relative overflow-hidden w-11 h-11 rounded-xl transition-all duration-300 transform hover:scale-110 active:scale-95 ${
+              todo.completed
+                ? "bg-gray-600 cursor-not-allowed opacity-50"
+                : isTodoEditable
+                  ? "bg-green-600 hover:bg-green-700 shadow-lg shadow-green-600/25"
+                  : "bg-blue-600 hover:bg-blue-700 shadow-lg shadow-blue-600/25"
+            } disabled:transform-none`}
+            onClick={() => {
+              if (todo.completed) return;
+              if (isTodoEditable) {
+                editTodo();
+              } else {
+                setIsTodoEditable(true);
+              }
+            }}
+            disabled={todo.completed}
+            title={isTodoEditable ? "Save changes" : "Edit todo"}
+          >
+            <div className="absolute inset-0 bg-white/20 opacity-0 group-hover/btn:opacity-100 transition-opacity duration-300"></div>
+            <div className="relative text-white text-lg">
+              {isTodoEditable ? (
+                <svg
+                  className="w-5 h-5 mx-auto"
+                  fill="none"
+                  stroke="currentColor"
+                  viewBox="0 0 24 24"
+                >
+                  <path
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    strokeWidth={2}
+                    d="M5 13l4 4L19 7"
+                  />
+                </svg>
+              ) : (
+                <svg
+                  className="w-5 h-5 mx-auto"
+                  fill="none"
+                  stroke="currentColor"
+                  viewBox="0 0 24 24"
+                >
+                  <path
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    strokeWidth={2}
+                    d="M11 5H6a2 2 0 00-2 2v11a2 2 0 002 2h11a2 2 0 002-2v-5m-1.414-9.414a2 2 0 112.828 2.828L11.828 15H9v-2.828l8.586-8.586z"
+                  />
+                </svg>
+              )}
+            </div>
+          </button>
+
+          {/* Delete Button */}
+          <button
+            className="group/btn relative overflow-hidden w-11 h-11 bg-red-600 hover:bg-red-700 rounded-xl transition-all duration-300 transform hover:scale-110 active:scale-95 shadow-lg shadow-red-600/25"
+            onClick={() => deleteTodo(todo.id)}
+            title="Delete todo"
+          >
+            <div className="absolute inset-0 bg-white/20 opacity-0 group-hover/btn:opacity-100 transition-opacity duration-300"></div>
+            <svg
+              className="relative w-5 h-5 mx-auto text-white"
+              fill="none"
+              stroke="currentColor"
+              viewBox="0 0 24 24"
+            >
+              <path
+                strokeLinecap="round"
+                strokeLinejoin="round"
+                strokeWidth={2}
+                d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16"
+              />
+            </svg>
+          </button>
+        </div>
+      </div>
+
+      {/* Completion celebration effect */}
+      {todo.completed && (
+        <div className="absolute top-2 right-2 text-2xl animate-bounce">🎉</div>
+      )}
     </div>
   );
 }

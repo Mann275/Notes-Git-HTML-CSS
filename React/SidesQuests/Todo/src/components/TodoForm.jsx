@@ -7,27 +7,47 @@ function TodoForm() {
 
   const add = (e) => {
     e.preventDefault();
-    if (!todo) return;
-    addTodo({ todo, completed: false });
+    if (!todo.trim()) return;
+    addTodo({ todo: todo.trim(), completed: false });
     setTodo("");
   };
 
   return (
-    <form className="flex" onSubmit={add}>
-      <input
-        type="text"
-        placeholder="Write Todo..."
-        className="w-full border border-black/10 rounded-l-lg px-3 outline-none duration-150 bg-white/20 py-1.5"
-        value={todo}
-        onChange={(e) => setTodo(e.target.value)}
-      />
-      <button
-        type="submit"
-        className="rounded-r-lg px-3 py-1 bg-green-600 text-white shrink-0"
-      >
-        Add
-      </button>
-    </form>
+    <div className="relative">
+      <form className="flex gap-3" onSubmit={add}>
+        <div className="relative flex-1">
+          <input
+            type="text"
+            placeholder="📝 What needs to be done today?"
+            className="w-full bg-gray-700 border-2 border-gray-600 rounded-xl px-6 py-4 text-white placeholder-gray-400 outline-none focus:border-blue-500 focus:bg-gray-600 transition-all duration-300 text-lg"
+            value={todo}
+            onChange={(e) => setTodo(e.target.value)}
+          />
+        </div>
+        <button
+          type="submit"
+          disabled={!todo.trim()}
+          className="bg-blue-600 hover:bg-blue-700 disabled:bg-gray-600 text-white px-8 py-4 rounded-xl font-semibold transition-all duration-300 transform hover:scale-105 active:scale-95 shadow-lg disabled:opacity-50 disabled:cursor-not-allowed disabled:transform-none"
+        >
+          <span className="flex items-center gap-2">
+            <svg
+              className="w-5 h-5"
+              fill="none"
+              stroke="currentColor"
+              viewBox="0 0 24 24"
+            >
+              <path
+                strokeLinecap="round"
+                strokeLinejoin="round"
+                strokeWidth={2}
+                d="M12 4v16m8-8H4"
+              />
+            </svg>
+            Add Todo
+          </span>
+        </button>
+      </form>
+    </div>
   );
 }
 export default TodoForm;
