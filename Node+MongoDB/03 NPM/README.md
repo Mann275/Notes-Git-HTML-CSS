@@ -59,3 +59,16 @@ npm install <package-name> --save-dev
 - `npm start` - Runs the script.js file
 - `npm test` - Placeholder for test command
 - `npm run mann` - Custom script that displays a colored message and runs script.js
+
+## 📦 Dependencies
+
+- **chalk** (^5.6.2) - Terminal string styling library
+
+### Installation
+
+```bash
+# Install all dependencies
+npm install
+
+# Or install chalk specifically
+npm install chalk

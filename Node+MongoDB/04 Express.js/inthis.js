@@ -20,11 +20,20 @@
 // ===========================================================
 
 // 4. Middleware
-// Done before the route handler and it is used to modify the request and response objects and it can also be used to perform some operations before the route handler is executed. for example, we can use middleware to check if the user is authenticated before allowing them to access a certain route. we can also use middleware to log the request and response objects for debugging purposes.
+// Whenever server receives a request or accepts a request it will first go to the middleware and then it will go to the route handler and then it will go to the response. so the flow is request -> middleware -> route handler -> response.
+
+// Middleware Definition
+// Middleware is a function that has access to the request (req), response (res), and next middleware function in the application's request-response cycle.
+// Syntax: (req, res, next) => { /* logic */ next(); }
+// Types: Application-level, Router-level, Error-handling, Built-in, Third-party
 
 // ===========================================================
 
 // 5. Request and Response Handling
+// request- it is the object that contains all the information about the request that is made to the server. it has properties like req.params, req.query, req.body, etc.
+// response- it is the object that is used to send the response back to the client. it has methods like res.send(), res.json(), res.status(), etc.
+
 // ===========================================================
 
 // 6. Error Handling
+// Error handling is an important part of any application. it is used to handle the errors that occur in the application. it is done by using the error handling middleware. it is a middleware that has 4 parameters (err, req, res, next) and it is used to handle the errors that occur in the application. it is defined after all the other middlewares and routes.
